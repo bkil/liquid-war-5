@@ -1,0 +1,4 @@
+#include "windows.h"
+
+allegro_icon ICON "..\misc\liquidwar.ico"
+
