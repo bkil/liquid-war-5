@@ -1,7 +1,13 @@
 
+2006-03-07  Christian Mauduit (ufoot@ufoot.org)
+
+	* Minor patch, removed accent (ascii>127) from doc.
+
+
 2005-12-11  Christian Mauduit (ufoot@ufoot.org)
 
 	* Move Arch depot to Savannah.
+
 
 2005-12-04  Christian Mauduit (ufoot@ufoot.org)
 
