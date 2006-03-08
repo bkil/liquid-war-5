@@ -6010,7 +6010,7 @@ VERSION_COMPACT=564
 
 
 
-                                                                                                                                                                                                                            ac_config_files="$ac_config_files Makefile src/Makefile src/Makefile.dep src/base.h utils/Makefile data/Makefile data/back/Makefile data/font/Makefile data/map/Makefile data/sfx/Makefile data/texture/Makefile data/maptex/Makefile data/water/Makefile data/music/Makefile doc/Makefile doc/html/index.html doc/tex/liquidwar.tex doc/man/begin.man doc/texi/begin.texi misc/liquidward misc/macosx_info.plist liquidwar.spec"
+                                                                                                                                                                                                                                      ac_config_files="$ac_config_files Makefile src/Makefile src/Makefile.dep src/base.h utils/Makefile data/Makefile data/back/Makefile data/font/Makefile data/map/Makefile data/sfx/Makefile data/texture/Makefile data/maptex/Makefile data/water/Makefile data/music/Makefile doc/Makefile doc/html/index.html doc/tex/liquidwar.tex doc/man/begin.man doc/texi/begin.texi misc/liquidward misc/macosx_info.plist misc/liquidwar.nsi liquidwar.spec"
 cat >confcache <<\_ACEOF
 # This file is a shell script that caches the results of configure
 # tests run on this system so they can be shared between configure
@@ -6582,6 +6582,7 @@ do
   "doc/texi/begin.texi" ) CONFIG_FILES="$CONFIG_FILES doc/texi/begin.texi" ;;
   "misc/liquidward" ) CONFIG_FILES="$CONFIG_FILES misc/liquidward" ;;
   "misc/macosx_info.plist" ) CONFIG_FILES="$CONFIG_FILES misc/macosx_info.plist" ;;
+  "misc/liquidwar.nsi" ) CONFIG_FILES="$CONFIG_FILES misc/liquidwar.nsi" ;;
   "liquidwar.spec" ) CONFIG_FILES="$CONFIG_FILES liquidwar.spec" ;;
   *) { { echo "$as_me:$LINENO: error: invalid argument: $ac_config_target" >&5
 echo "$as_me: error: invalid argument: $ac_config_target" >&2;}

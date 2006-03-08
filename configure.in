@@ -477,6 +477,7 @@ AC_OUTPUT( \
 	   doc/texi/begin.texi \
 	   misc/liquidward \
 	   misc/macosx_info.plist \
+	   misc/liquidwar.nsi \
 	   liquidwar.spec)
 
 dnl Change the liquidward attribute
