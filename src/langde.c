@@ -113,7 +113,8 @@ lw_langde_init ()
 
   LW_LANGDE_DATA[LW_LANG_STRING_HELP_VERSION] =
     "Liquid War von U-Foot\n\nv" LW_VERSION " \n\ncompiled am " __DATE__
-    " um " __TIME__ "\n\nWeitere Informationen auf www.ufoot.org/liquidwar/v5\n";
+    " um " __TIME__
+    "\n\nWeitere Informationen auf www.ufoot.org/liquidwar/v5\n";
 
   LW_LANGDE_DATA[LW_LANG_STRING_MENU_PLAY] = "Spielen";
   LW_LANGDE_DATA[LW_LANG_STRING_MENU_NETGAME] = "Netzwerk";

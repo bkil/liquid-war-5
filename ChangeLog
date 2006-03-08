@@ -1,4 +1,9 @@
 
+2006-03-08  Christian Mauduit (ufoot@ufoot.org)
+
+	* Fixed segfault when graphics mode are not available.
+
+
 2006-03-07  Christian Mauduit (ufoot@ufoot.org)
 
 	* Created an NSIS installer script (not working yet).

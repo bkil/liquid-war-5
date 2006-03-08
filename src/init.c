@@ -74,6 +74,8 @@
 /* variables globales                                               */
 /*==================================================================*/
 
+int LW_INIT_ALLEGRO_OK = 0;
+
 /*==================================================================*/
 /* fonctions                                                        */
 /*==================================================================*/
@@ -108,8 +110,8 @@ int
 init_all ()
 {
   int result = 0;
-  int assembly = 1, config = 1, timer = 1, keyboard = 1, mouse = 1, sound =
-    1, joystick = 1, network = 1;
+  int graphics = 1, assembly = 1, config = 1, timer = 1, keyboard = 1,
+    mouse = 1, sound = 1, joystick = 1, network = 1;
 
   /*
    * we use srand to garantee that random() won't return the same values
@@ -122,121 +124,127 @@ init_all ()
   lw_lang_init ();
   set_uformat (U_ASCII);
 
-  allegro_init ();
+  log_print_str ("Starting Allegro (http://www.talula.demon.co.uk/allegro)");
+  display_success (graphics = !allegro_init ());
+  log_println ();
+
+  if (graphics)
+    {
+      LW_INIT_ALLEGRO_OK = 1;
+
 #ifdef DOS
-  set_gfx_mode (GFX_TEXT, 0, 0, 0, 0);
+      set_gfx_mode (GFX_TEXT, 0, 0, 0, 0);
 #endif
-  log_println_str
-    ("Starting Allegro (http://www.talula.demon.co.uk/allegro)");
-  log_println ();
-  log_print_str ("Allegro ID : ");
-  log_println_str (allegro_id);
-  log_println ();
+      log_print_str ("Allegro ID : ");
+      log_println_str (allegro_id);
+      log_println ();
 
-  set_color_depth (8);
-  set_color_conversion (COLORCONV_REDUCE_TO_256);
+      set_color_depth (8);
+      set_color_conversion (COLORCONV_REDUCE_TO_256);
 
-  /*
-   * We check for potential struct size errors
-   */
-  assembly = lw_asm_check_struct_align ();
+      /*
+       * We check for potential struct size errors
+       */
+      assembly = lw_asm_check_struct_align ();
 
-  log_print_str ("Loading config options from \"");
-  log_print_str (STARTUP_CFG_PATH);
-  log_print_str ("\"");
+      log_print_str ("Loading config options from \"");
+      log_print_str (STARTUP_CFG_PATH);
+      log_print_str ("\"");
 
-  /*
-   * We call this now only (after loading the options), for
-   * options must be loaded for my_exit_close_button to work
-   */
-  //set_window_close_button (TRUE); deprecated
-  //set_window_close_hook (my_exit_close_button); deprecated
-  set_close_button_callback (my_exit_close_button);
+      /*
+       * We call this now only (after loading the options), for
+       * options must be loaded for my_exit_close_button to work
+       */
+      //set_window_close_button (TRUE); deprecated
+      //set_window_close_hook (my_exit_close_button); deprecated
+      set_close_button_callback (my_exit_close_button);
 
-  display_success (config = load_config_options ());
+      display_success (config = load_config_options ());
 
-  log_print_str ("Installing timer");
-  timer = !install_timer ();
-  if (timer)
-    {
-      display_success_driver ((char *) timer_driver->ascii_name);
-    }
-  else
-    {
-      display_success (0);
-    }
-
-  start_ticker ();
-
-  log_print_str ("Installing keyboard");
-  keyboard = !install_keyboard ();
-  if (keyboard)
-    {
-      display_success_driver ((char *) keyboard_driver->ascii_name);
-    }
-  else
-    {
-      display_success (0);
-    }
-
-  log_print_str ("Installing mouse");
-  mouse = install_mouse () != -1;
-  if (mouse)
-    {
-      display_success_driver ((char *) mouse_driver->ascii_name);
-    }
-  else
-    {
-      display_success (0);
-    }
-
-  if (STARTUP_DIGI_CARD != DIGI_NONE || STARTUP_MIDI_CARD != MIDI_NONE)
-    {
-      log_print_str ("Installing sound");
-      sound = !install_sound (STARTUP_DIGI_CARD, STARTUP_MIDI_CARD, "");
-      if (!sound)
+      log_print_str ("Installing timer");
+      timer = !install_timer ();
+      if (timer)
 	{
-	  /*
-	   * OK, first init failed, now we try without the MIDI card, which
-	   * is where problems usually come from, especially under Linux
-	   */
-	  sound = !install_sound (STARTUP_DIGI_CARD, MIDI_NONE, "");
-	}
-      if (sound)
-	{
-	  log_print_str (" (digi=\"");
-	  log_print_str ((char *) digi_driver->ascii_name);
-	  log_print_str ("\", midi=\"");
-	  log_print_str ((char *) midi_driver->ascii_name);
-	  log_print_str ("\")");
-	}
-      display_success (sound);
-    }
-
-  if (STARTUP_JOYSTICK_ON)
-    {
-      log_print_str ("Installing joystick");
-      if (STARTUP_JOYSTICK_ON)
-	joystick = !my_initialise_joystick ();
-      if (joystick)
-	{
-	  display_success_driver ((char *) joystick_driver->ascii_name);
+	  display_success_driver ((char *) timer_driver->ascii_name);
 	}
       else
 	{
 	  display_success (0);
 	}
+
+      start_ticker ();
+
+      log_print_str ("Installing keyboard");
+      keyboard = !install_keyboard ();
+      if (keyboard)
+	{
+	  display_success_driver ((char *) keyboard_driver->ascii_name);
+	}
+      else
+	{
+	  display_success (0);
+	}
+
+      log_print_str ("Installing mouse");
+      mouse = install_mouse () != -1;
+      if (mouse)
+	{
+	  display_success_driver ((char *) mouse_driver->ascii_name);
+	}
+      else
+	{
+	  display_success (0);
+	}
+
+      if (STARTUP_DIGI_CARD != DIGI_NONE || STARTUP_MIDI_CARD != MIDI_NONE)
+	{
+	  log_print_str ("Installing sound");
+	  sound = !install_sound (STARTUP_DIGI_CARD, STARTUP_MIDI_CARD, "");
+	  if (!sound)
+	    {
+	      /*
+	       * OK, first init failed, now we try without the MIDI card, which
+	       * is where problems usually come from, especially under Linux
+	       */
+	      sound = !install_sound (STARTUP_DIGI_CARD, MIDI_NONE, "");
+	    }
+	  if (sound)
+	    {
+	      log_print_str (" (digi=\"");
+	      log_print_str ((char *) digi_driver->ascii_name);
+	      log_print_str ("\", midi=\"");
+	      log_print_str ((char *) midi_driver->ascii_name);
+	      log_print_str ("\")");
+	    }
+	  display_success (sound);
+	}
+
+      if (STARTUP_JOYSTICK_ON)
+	{
+	  log_print_str ("Installing joystick");
+	  if (STARTUP_JOYSTICK_ON)
+	    joystick = !my_initialise_joystick ();
+	  if (joystick)
+	    {
+	      display_success_driver ((char *) joystick_driver->ascii_name);
+	    }
+	  else
+	    {
+	      display_success (0);
+	    }
+	}
+
+      log_print_str ("Setting up network");
+      display_success (network = lw_sock_init ());
+
+      /*
+       * We update the "capture" mode
+       */
+      lw_capture_set_mode (STARTUP_CAPTURE);
     }
 
-  log_print_str ("Setting up network");
-  display_success (network = lw_sock_init ());
-
-  /*
-   * We update the "capture" mode
-   */
-  lw_capture_set_mode (STARTUP_CAPTURE);
-
-  result = (assembly || !STARTUP_CHECK)
+  result = graphics
+    && (assembly || !STARTUP_CHECK)
     && timer
     && keyboard
     && mouse && (sound || !STARTUP_CHECK) && (joystick || !STARTUP_CHECK);

@@ -99,10 +99,10 @@ BEGIN_GFX_DRIVER_LIST
   int
 main (int argc, char **argv)
 {
-  int init_success;
-  int big_data_success;
-  int load_dat_success;
-  int load_custom_success;
+  int init_success = 0;
+  int big_data_success = 0;
+  int load_dat_success = 0;
+  int load_custom_success = 0;
 
   read_command_line (argc, argv);
 
@@ -110,19 +110,22 @@ main (int argc, char **argv)
     {
       init_success = init_all ();
 
-      big_data_success = (malloc_big_data () != NULL);
-      log_println ();
-      load_dat_success = load_dat ();
-      log_println ();
-      load_custom_success = load_custom ();
-      log_println ();
+      if (init_success)
+	{
+	  big_data_success = (malloc_big_data () != NULL);
+	  log_println ();
+	  load_dat_success = load_dat ();
+	  log_println ();
+	  load_custom_success = load_custom ();
+	  log_println ();
 
 #ifdef DOS
-      if (STARTUP_STOP)
-	readkey ();
-      else
-	delay (500);
+	  if (STARTUP_STOP)
+	    readkey ();
+	  else
+	    delay (500);
 #endif
+	}
 
       if (!init_success)
 	my_exit (EXIT_CODE_INIT_FAIL);

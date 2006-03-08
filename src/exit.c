@@ -61,6 +61,7 @@
 #include "basicopt.h"
 #include "config.h"
 #include "exit.h"
+#include "init.h"
 #include "log.h"
 #include "sound.h"
 #include "startup.h"
@@ -90,28 +91,32 @@ static int LW_EXIT_FORCE_SHUTDOWN = 0;
 static void
 exit_all (void)
 {
-  /*
-   * we take a rest before and after calling set_gfx_mode(GFX_TEXT,...)
-   * This is an attempt to get rid of a hideous bug under X-Win,
-   * which said that there was a "bad file descriptor"
-   */
-  rest (10);
-  last_flip ();
-  set_gfx_mode (GFX_TEXT, 0, 0, 0, 0);
-  rest (10);
+  if (LW_INIT_ALLEGRO_OK)
+    {
+      /*
+       * we take a rest before and after calling set_gfx_mode(GFX_TEXT,...)
+       * This is an attempt to get rid of a hideous bug under X-Win,
+       * which said that there was a "bad file descriptor"
+       */
+      rest (10);
+      last_flip ();
+      set_gfx_mode (GFX_TEXT, 0, 0, 0, 0);
+      rest (10);
 
-  log_println ();
-  log_println_str ("Leaving Allegro (http://www.talula.demon.co.uk/allegro)");
-  save_config_options ();
-  stop_water ();
-  stop_ticker ();
-  remove_sound ();
-  remove_mouse ();
-  clear_keybuf ();
-  remove_keyboard ();
-  remove_timer ();
-  allegro_exit ();
-  lw_sock_exit ();
+      log_println ();
+      log_println_str
+	("Leaving Allegro (http://www.talula.demon.co.uk/allegro)");
+      save_config_options ();
+      stop_water ();
+      stop_ticker ();
+      remove_sound ();
+      remove_mouse ();
+      clear_keybuf ();
+      remove_keyboard ();
+      remove_timer ();
+      allegro_exit ();
+      lw_sock_exit ();
+    }
 }
 
 /*------------------------------------------------------------------*/
