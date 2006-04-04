@@ -1,4 +1,9 @@
 
+2006-04-03  Christian Mauduit (ufoot@ufoot.org)
+
+	* Fixed atrocious bug in group_mesher. Almost 8 years old.
+
+
 2006-04-02  Christian Mauduit (ufoot@ufoot.org)
 
 	* Deleted lwtabto3.pcx which was a duplicate of lwtab006.pcx

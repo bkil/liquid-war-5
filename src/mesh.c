@@ -170,8 +170,8 @@ group_mesher (MESHER * mesher, BITMAP * map, int step)
   h = map->h;
   size = h * w;
 
-  for (y = 0; y < h; y += step * 2)
-    for (x = 0; x < w; x += step * 2)
+  for (y = 0; y < h - step; y += step * 2)
+    for (x = 0; x < w - step; x += step * 2)
       {
 	i = y * w + x;
 	ne = mesher + i + step;
