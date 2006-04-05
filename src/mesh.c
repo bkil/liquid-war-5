@@ -81,7 +81,7 @@ MESHER;
 #define MESH_FG 1
 #define MESH_BG 2
 
-#define MESH_MAX_ELEM_SIZE 8
+#define MESH_MAX_ELEM_SIZE 16
 
 MESH *CURRENT_MESH = NULL;
 int CURRENT_MESH_SIZE = 0;
@@ -360,7 +360,7 @@ create_mesh (void)
       if (mesher != NULL)
 	{
 	  i = 1;
-	  while (i <= MESH_MAX_ELEM_SIZE && group_mesher (mesher, map, i))
+	  while (i <= MESH_MAX_ELEM_SIZE / 2 && group_mesher (mesher, map, i))
 	    i *= 2;
 	  CURRENT_MESH = mesher_to_mesh (mesher, map,
 					 &CURRENT_MESH_SIZE,
