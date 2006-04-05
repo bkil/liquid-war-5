@@ -128,26 +128,29 @@ create_first_mesher (BITMAP * map)
 	  {
 	    i = y * w + x;
 
-	    if (result[i - w].used)
-	      result[i].link[DIR_NNW] = result[i].link[DIR_NNE]
-		= result + i - w;
-	    if (result[i - w + 1].used)
-	      result[i].link[DIR_NE] = result + i - w + 1;
-	    if (result[i + 1].used)
-	      result[i].link[DIR_ENE] = result[i].link[DIR_ESE]
-		= result + i + 1;
-	    if (result[i + w + 1].used)
-	      result[i].link[DIR_SE] = result + i + w + 1;
-	    if (result[i + w].used)
-	      result[i].link[DIR_SSE] = result[i].link[DIR_SSW]
-		= result + i + w;
-	    if (result[i + w - 1].used)
-	      result[i].link[DIR_SW] = result + i + w - 1;
-	    if (result[i - 1].used)
-	      result[i].link[DIR_WSW] = result[i].link[DIR_WNW]
-		= result + i - 1;
-	    if (result[i - w - 1].used)
-	      result[i].link[DIR_NW] = result + i - w - 1;
+	    if (result[i].used)
+	      {
+		if (result[i - w].used)
+		  result[i].link[DIR_NNW] = result[i].link[DIR_NNE]
+		    = result + i - w;
+		if (result[i - w + 1].used)
+		  result[i].link[DIR_NE] = result + i - w + 1;
+		if (result[i + 1].used)
+		  result[i].link[DIR_ENE] = result[i].link[DIR_ESE]
+		    = result + i + 1;
+		if (result[i + w + 1].used)
+		  result[i].link[DIR_SE] = result + i + w + 1;
+		if (result[i + w].used)
+		  result[i].link[DIR_SSE] = result[i].link[DIR_SSW]
+		    = result + i + w;
+		if (result[i + w - 1].used)
+		  result[i].link[DIR_SW] = result + i + w - 1;
+		if (result[i - 1].used)
+		  result[i].link[DIR_WSW] = result[i].link[DIR_WNW]
+		    = result + i - 1;
+		if (result[i - w - 1].used)
+		  result[i].link[DIR_NW] = result + i - w - 1;
+	      }
 	  }
     }
 
