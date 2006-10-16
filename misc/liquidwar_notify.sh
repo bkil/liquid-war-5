@@ -50,7 +50,7 @@ SUBJECT="[liquidwar-bot] Connection"
 
 #RECEIVERS="ufoot@ufoot.org"
 
-if test "$RECEIVERS" == "" ; then
+if test "$RECEIVERS" = "" ; then
     echo "You need to parameter this script first!"
     exit 1
 fi
