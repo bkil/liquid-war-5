@@ -46,7 +46,7 @@ The ./configure script accepts options, the most usefull being IMHO:
 --prefix=/my/path    : changes the default install directory
 --disable-doc-xxx    : turns off the generation of doc in format 'xxx'
 --enable-static      : enables static linking
---disable-target-opt : turns off optimizations such as "-mcpu=i686"
+--disable-target-opt : turns off optimizations such as "-march=i686"
 
 
 Since release 5.3.3, binaries of Liquid War for GNU/Linux are available.

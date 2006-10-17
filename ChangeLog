@@ -1,4 +1,9 @@
 
+2006-10-17  Christian Mauduit (ufoot@ufoot.org)
+
+	* Gcc option -mpcu (deprecated) -> -march.
+
+
 2006-10-16  Christian Mauduit (ufoot@ufoot.org)
 
 	* Makefile patch for BSD by Thomas Klausner.
