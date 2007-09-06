@@ -253,7 +253,7 @@ liquidwar-mapgen: $(OBJ_FILES_MAPGEN)
 	@$(CC) $(LDFLAGS) $(LINK_OPTIONS) -o $@ $(OBJ_FILES_MAPGEN) $(PTHREAD) $(EXTERN_LIBS) 
 
 dep:
-	@find .\
+	@find . \
 	-name '*.c' | \
 	grep "\.c" | \
 	sed "s/^.\///;" | \

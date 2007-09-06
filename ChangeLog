@@ -1,4 +1,8 @@
 
+2007-09-06  Christian Mauduit (ufoot@ufoot.org)
+
+	* Minor Makefile fix
+
 2006-10-17  Christian Mauduit (ufoot@ufoot.org)
 
 	* Gcc option -mpcu (deprecated) -> -march.
