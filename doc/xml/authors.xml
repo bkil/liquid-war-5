@@ -126,6 +126,12 @@ Snail mail: 32 rue Jean Moulin  95100 Argenteuil  FRANCE
       <elem>
 	666-REFIZUL-666 : created many maps (distributed separately).
       </elem>
+      <elem>
+	Thomas Klausner : fixed Makefile for FreeBSD
+      </elem>
+      <elem>
+	Joan Dolc : helped with Mac OS/X port
+      </elem>
     </list>
     <text>
       Many other people helped me by submitting bug reports and patches,
