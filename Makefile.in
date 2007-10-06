@@ -260,7 +260,7 @@ $(PACKAGE_SOURCE_TARGZ):
 	@rm -rf $(PACKAGE_TMP)
 	@install -d $(PACKAGE_TMP)/$(PACKAGE_SOURCE_DIR)
 	@echo "Copying files."
-	@find . -maxdepth 1 \! -name "*$(PACKAGE_TMP)*" \! -name "." -exec cp -r \{\} $(PACKAGE_TMP)/$(PACKAGE_SOURCE_DIR) \;
+	@find . -maxdepth 1 \! -path "*$(PACKAGE_TMP)*" \! -name "." -exec cp -r \{\} $(PACKAGE_TMP)/$(PACKAGE_SOURCE_DIR) \;
 	@echo "Cleaning up."
 	@$(GMAKE) -C $(PACKAGE_TMP)/$(PACKAGE_SOURCE_DIR) packageclean
 	@touch $(PACKAGE_TMP)/$(PACKAGE_SOURCE_DIR)/.cvsignore

@@ -14,58 +14,31 @@
       stable and bug-free as possible is really important to me - and
       most of the time players also appreciate stable programs 8-)
     </text>
-  </chap>
-  
-  <chap title="Artwork">
     <text>
-      It's hard to find people to do that kind of thing.
-      Artists are indeed pretty rare, at least artists who wish to
-      create stuff freely...
-      So if you feel like adding some theme support to Liquid War,
-      this could *really* help.
-      I used the textures I had but it would be nice
-      if one could have a "space" ambiance, an "ocean" ambiance
-      or a "desert" ambiance.
-      This could really make the game better I think.
-    </text>
-    <text>
-      Musics (in midi format) are also appreciated.
-      Tim Chadburn spontaneously contributed the first midi files,
-      and it really pleased me 8-)
+      The most important bug-fixing area is probably cross-platform
+      support. That is, make sure that the game runs fine on every
+      supported OS. For instance, it's quite common for Mac OS/X and/or
+      FreeBSD users to "crash" the game. This rarely happens on
+      GNU/Linux, just because it has been so much more tested on
+      this platform. This applies to Liquid War itself and also,
+      to some extent, to Allegro.
     </text>
   </chap>
 
   <chap title="New features">
     <text>
-      I regularly receive requests for new features in Liquid War.
-      Of course I do not have enough time to implement them all,
-      so they land in my "todo" list. However, most "major"
-      evolutions are now planned for Liquid War 6, since the code
-      in Liquid War 5 is bloated as hell. It's all right to
-      debug it and code minor evolutions, but that's all.
+      Let's be clear: no new features in Liquid War 5.
+      It's bloated, complicated, old, uninteresting to hack.
+      All new features should be found in Liquid War 6.
     </text>
-    <text>
-      However, here's a list of what "could be" in the next
-      Liquid War 5.x.x releases, although it might never be
-      implemented there and come later with Liquid War 6:
-    </text>
-    <list>
-      <elem>
-	Network enhancements. Network in LW5 is somewhat buggy and
-	hard to use, improvements wouldn't harm.
-      </elem>
-      <elem>
-	Theme support. This would be a way to get rid of the ugly
-	current fonts and menus.
-      </elem>
-    </list>
   </chap>
 
   <chap title="Liquid War 6">
     <text>
       Since summer 2005, Liquid War 6, a complete rewrite of Liquid War,
       is on its way. See 
-      "http://www.ufoot.org/liquidwar/v6" 
+      "http://www.gnu.org/software/liquidwar6/" or
+      "http://www.ufoot.org/liquidwar/v6"
       for more informations.
     </text>
   </chap>

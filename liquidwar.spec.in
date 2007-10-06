@@ -4,7 +4,7 @@ Summary(de): Ein einzigartiges Kriegspiel für mehrere Spieler.
 Name: liquidwar
 Version: @VERSION@
 Release: @VERSION_REL@
-Copyright: GPL
+License: GPL
 Group: Amusements/Games
 Source: http://freesoftware.fsf.org/download/liquidwar/liquidwar-@VERSION@.tar.gz
 URL: http://www.ufoot.org/liquidwar/v5
@@ -79,16 +79,23 @@ if which install-info; then if test -d %{_prefix}/info; then if test -f %{_prefi
 %defattr(-,root,root)
 %{_prefix}/games/liquidwar
 %{_prefix}/games/liquidwar-server
+%{_prefix}/games/liquidwar-mapgen
 %{_prefix}/bin/liquidwar
 %{_prefix}/bin/liquidwar-server
+%{_prefix}/bin/liquidwar-mapgen
 %{_prefix}/share/games/liquidwar/
 %{_prefix}/share/doc/liquidwar/
 %{_prefix}/share/man/man6/liquidwar.6*
 %{_prefix}/share/man/man6/liquidwar-server.6*
+%{_prefix}/share/man/man6/liquidwar-mapgen.6*
 %{_prefix}/share/info/liquidwar.info*
 %{_prefix}/share/pixmaps/liquidwar.xpm
+%{_prefix}/share/applications/liquidwar.desktop
 
 %changelog
+
+* Thu Sep 27 2007 Christian Mauduit <ufoot@ufoot.org>
+- Added mapgen files, fixed deprecated RPM syntax.
 
 * Fri Dec 13 2002 Christian Mauduit <ufoot@ufoot.org>
 - Added French and German informations.
