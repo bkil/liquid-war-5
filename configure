@@ -701,6 +701,7 @@ GMAKE
 VERSION
 VERSION_REL
 VERSION_COMPACT
+VERSION_WIN32
 LIBOBJS
 LTLIBOBJS'
 ac_subst_files=''
@@ -6468,16 +6469,18 @@ echo "${ECHO_T}$GMAKE" >&6; }
 
 
 
-VERSION=5.6.4
-VERSION_REL=1
-VERSION_COMPACT=564
+VERSION="5.6.4"
+VERSION_REL="1"
+VERSION_COMPACT="564"
+VERSION_WIN32="5, 6, 4, 1"
 
 
 
 
 
 
-ac_config_files="$ac_config_files Makefile src/Makefile src/Makefile.dep src/base.h utils/Makefile data/Makefile data/back/Makefile data/font/Makefile data/map/Makefile data/sfx/Makefile data/texture/Makefile data/maptex/Makefile data/water/Makefile data/music/Makefile doc/Makefile doc/html/index.html doc/tex/liquidwar.tex doc/man/begin.man doc/texi/begin.texi misc/liquidward misc/macosx_info.plist misc/liquidwar.nsi liquidwar.spec"
+
+ac_config_files="$ac_config_files Makefile src/Makefile src/Makefile.dep src/base.h src/lwwin.rc utils/Makefile data/Makefile data/back/Makefile data/font/Makefile data/map/Makefile data/sfx/Makefile data/texture/Makefile data/maptex/Makefile data/water/Makefile data/music/Makefile doc/Makefile doc/html/index.html doc/tex/liquidwar.tex doc/man/begin.man doc/texi/begin.texi misc/liquidward misc/macosx_info.plist misc/liquidwar.nsi liquidwar.spec"
 
 cat >confcache <<\_ACEOF
 # This file is a shell script that caches the results of configure
@@ -7050,6 +7053,7 @@ do
     "src/Makefile") CONFIG_FILES="$CONFIG_FILES src/Makefile" ;;
     "src/Makefile.dep") CONFIG_FILES="$CONFIG_FILES src/Makefile.dep" ;;
     "src/base.h") CONFIG_FILES="$CONFIG_FILES src/base.h" ;;
+    "src/lwwin.rc") CONFIG_FILES="$CONFIG_FILES src/lwwin.rc" ;;
     "utils/Makefile") CONFIG_FILES="$CONFIG_FILES utils/Makefile" ;;
     "data/Makefile") CONFIG_FILES="$CONFIG_FILES data/Makefile" ;;
     "data/back/Makefile") CONFIG_FILES="$CONFIG_FILES data/back/Makefile" ;;
@@ -7218,11 +7222,12 @@ GMAKE!$GMAKE$ac_delim
 VERSION!$VERSION$ac_delim
 VERSION_REL!$VERSION_REL$ac_delim
 VERSION_COMPACT!$VERSION_COMPACT$ac_delim
+VERSION_WIN32!$VERSION_WIN32$ac_delim
 LIBOBJS!$LIBOBJS$ac_delim
 LTLIBOBJS!$LTLIBOBJS$ac_delim
 _ACEOF
 
-  if test `sed -n "s/.*$ac_delim\$/X/p" conf$$subs.sed | grep -c X` = 91; then
+  if test `sed -n "s/.*$ac_delim\$/X/p" conf$$subs.sed | grep -c X` = 92; then
     break
   elif $ac_last_try; then
     { { echo "$as_me:$LINENO: error: could not make $CONFIG_STATUS" >&5

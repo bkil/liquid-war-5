@@ -266,7 +266,7 @@ clean:
 	@rm -f $(EXE_FILES)
 
 distclean:
-	@rm -f Makefile Makefile.dep base.h
+	@rm -f Makefile Makefile.dep
 
 %.o: %.c
 	@echo "Compiling $< (cpu=$(TARGET_CPU), debug=$(DEBUG), asm=$(ASM))"

@@ -43,116 +43,56 @@
 /*****************************************************************************/
 
 /********************************************************************/
-/* name          : execunix.c                                       */
-/* content       : code used to launch external programs on Windows */
+/* nom           : base.h                                           */
+/* contenu       : global application-wide constants, macros, etc...*/
 /********************************************************************/
+
+#ifndef LIQUID_WAR_INCLUDE_BASE
+#define LIQUID_WAR_INCLUDE_BASE
 
 /*==================================================================*/
 /* includes                                                         */
 /*==================================================================*/
 
+/*==================================================================*/
+/* constantes                                                       */
+/*==================================================================*/
+
+#define NB_TEAMS 6
+#define NB_DIRS 12
+
+#define DIR_NNE 0
+#define DIR_NE 1
+#define DIR_ENE 2
+#define DIR_ESE 3
+#define DIR_SE 4
+#define DIR_SSE 5
+#define DIR_SSW 6
+#define DIR_SW 7
+#define DIR_WSW 8
+#define DIR_WNW 9
+#define DIR_NW 10
+#define DIR_NNW 11
+
+#define LW_PROGRAM               "liquidwar"
+#define LW_VERSION               "5.6.4"
+
+#define NAME_SIZE 10
+#define PASSWORD_SIZE 20
+#define COMMENT_SIZE 100
+#define URL_SIZE 300    
+
+/*
+ * On windows there are problems linking with random() so we use
+ * rand() instead, which does pretty much the same thing. Still
+ * we keep on using random() on UNIX for it's supposed to provid
+ * "more random" values than rand(). This is particularly noticeable
+ * on FreeBSD.
+ */
 #ifdef WIN32
-#include <windows.h>
+#define random rand
+#define srandom srand
 #endif
 
-#include "execgen.h"
-#include "macro.h"
-#include "log.h"
+#endif
 
-/*==================================================================*/
-/* constants                                                        */
-/*==================================================================*/
-
-#define LW_EXEC_ERROR_SIZE 1000
-
-/*==================================================================*/
-/* static functions                                                 */
-/*==================================================================*/
-
-/*==================================================================*/
-/* global functions                                                 */
-/*==================================================================*/
-
-/*------------------------------------------------------------------*/
-/*
- * Launches a command line in another process.
- */
-int
-lw_exec_cmd (char *cmd)
-{
-  int result = 0;
-  BOOL create_process_ret;
-  STARTUPINFO startup_info;
-  PROCESS_INFORMATION process_info;
-
-  memset (&startup_info, 0, sizeof (STARTUPINFO));
-  memset (&process_info, 0, sizeof (PROCESS_INFORMATION));
-
-  startup_info.cb = sizeof (STARTUPINFO);
-
-  create_process_ret = CreateProcess (NULL,	//lpApplicationName
-				      cmd,	//lpCommandLine
-				      NULL,	//lpProcessAttributes
-				      NULL,	//lpThreadAttributes
-				      FALSE,	//bInheritHandles
-				      0,	//dwCreationFlags
-				      NULL,	//lpEnvironment
-				      NULL,	//lpCurrentDirectory
-				      &startup_info,	//lpStartupInfo
-				      &process_info	//lpProcessInformation
-    );
-
-
-  if (create_process_ret == 0)
-    {
-      int error_int;
-      char error_str[LW_EXEC_ERROR_SIZE];
-      int error_len;
-      int crlf_found;
-      LPVOID message_buf;
-
-      error_int = (int) GetLastError ();
-
-      if (FormatMessage (FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS, NULL, error_int, MAKELANGID (LANG_NEUTRAL, SUBLANG_DEFAULT),	// Default language
-			 (LPTSTR) & message_buf, 0, NULL))
-	{
-	  LW_MACRO_SPRINTF2 (error_str, "%d: \"%s", error_int, message_buf);
-	  LocalFree (message_buf);
-
-	  /*
-	   * Now we trim ending CR-LF chars
-	   */
-	  crlf_found = 1;
-	  while (crlf_found)
-	    {
-	      error_len = strlen (error_str);
-	      crlf_found = 0;
-	      if (error_len > 1)
-		{
-		  if (error_str[error_len - 1] == '\n'
-		      || error_str[error_len - 1] == '\r')
-		    {
-		      error_str[error_len - 1] = '\0';
-		      crlf_found = 1;
-		    }
-		}
-	    }
-	  LW_MACRO_STRCAT (error_str, "\"");
-	}
-      else
-	{
-	  LW_MACRO_SPRINTF1 (error_str, "%d", error_int);
-	}
-
-      log_print_str ("Can't execute \"");
-      log_print_str (cmd);
-      log_print_str ("\", error ");
-      log_println_str (error_str);
-    }
-  else
-    {
-      result = 1;
-    }
-
-  return result;
-}

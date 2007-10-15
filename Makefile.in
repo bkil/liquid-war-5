@@ -51,12 +51,14 @@ PACKAGE_SOURCE_TARGZ = $(PACKAGE_SOURCE_TAR).gz
 PACKAGE_BINARY_TAR = liquidwar-$(VERSION).$(TARGET).tar
 PACKAGE_BINARY_TGZ = liquidwar-$(VERSION).$(TARGET).tgz
 
+# the following line should be edited to match your configuration
+PACKAGE_WIN32_ALLEGDLL = /storage/download/liquidwar/v5/allegro/alleg42.dll
 PACKAGE_WIN32_DIR = LW5
 PACKAGE_WIN32_EXE = lwwin.exe lwwinsrv.exe lwwinmap.exe
 PACKAGE_WIN32_ZIP = lw$(VERSION_COMPACT)w.zip
 
 # the following line should be edited to match your configuration
-PACKAGE_DOS_CWSDPMI = /home/ufoot/home/storage/fauvelles/shared/win98/cwsdpmi.exe
+PACKAGE_DOS_CWSDPMI = /storage/download/liquidwar/v5/allegro/cwsdpmi.exe
 PACKAGE_DOS_DIR = LW5
 PACKAGE_DOS_EXE = lwdos.exe lwdosmap.exe
 PACKAGE_DOS_ZIP = lw$(VERSION_COMPACT)d.zip
@@ -253,6 +255,8 @@ dep:
 # yourself 8-)
 # ----------------------------------------------------------------------
 
+dist: package_source
+
 package_source: $(PACKAGE_SOURCE_TARGZ)
 
 $(PACKAGE_SOURCE_TARGZ): 
@@ -276,7 +280,7 @@ $(PACKAGE_SOURCE_TARGZ):
 
 package_win32: $(PACKAGE_WIN32_ZIP)
 
-$(PACKAGE_WIN32_ZIP): $(PACKAGE_WIN32_EXE)
+$(PACKAGE_WIN32_ZIP): $(PACKAGE_WIN32_EXE) $(PACKAGE_WIN32_ALLEGDLL)
 	@echo "Building data."
 	@$(GMAKE) -C data
 	@echo "Building doc."
@@ -286,6 +290,7 @@ $(PACKAGE_WIN32_ZIP): $(PACKAGE_WIN32_EXE)
 	@install -d $(PACKAGE_TMP)/$(PACKAGE_WIN32_DIR)
 	@echo "Copying files."
 	@cp $(PACKAGE_WIN32_EXE) $(PACKAGE_TMP)/$(PACKAGE_WIN32_DIR)
+	@cp $(PACKAGE_WIN32_ALLEGDLL) $(PACKAGE_TMP)/$(PACKAGE_WIN32_DIR)
 	@cp README $(PACKAGE_TMP)/$(PACKAGE_WIN32_DIR)/readme.txt
 	@cp README.fr $(PACKAGE_TMP)/$(PACKAGE_WIN32_DIR)/readmefr.txt
 	@cp README.de $(PACKAGE_TMP)/$(PACKAGE_WIN32_DIR)/readmede.txt

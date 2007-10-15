@@ -1,4 +1,11 @@
 
+2007-10-15  Christian Mauduit (ufoot@ufoot.org)
+
+	* MSVC -> MinGW
+
+	* src/base.h now included in source tarball (for MS platforms...)
+
+
 2007-10-06  Christian Mauduit (ufoot@ufoot.org)
 
 	* Minor packaging & doc fixes.

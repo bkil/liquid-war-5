@@ -1,5 +1,28 @@
+# Liquid War is a multiplayer wargame
+# Copyright (C) 1998-2007 Christian Mauduit
 #
-# Required DJGPP stuff:
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+#
+# Liquid War homepage : http://www.ufoot.org/liquidwar/v5
+# Contact author      : ufoot@ufoot.org
+#
+# This Makefile is used to compile the MS DOS 32-bit executable binary.
+# 
+# It requires a working DJGPP http://www.delorie.com/djgpp/ install to work.
+# 
+# Typical DJGPP requirements are:
 # v2/copying.dj
 # v2/djdev203.zip
 # v2/faq230b.zip
@@ -14,17 +37,24 @@
 # v2gnu/txi48b.zip
 # v2gnu/txt20b.zip
 #
-# To compile Allegro for DOS:
+# To compile Allegro for MinGW, read "./docs/build/djgpp.txt" in the
+# Allegro source distribution. Usually, the following sequence works:
 # > fix djgpp
 # > make
 # > make install
 #
+# Then to compile Liquid War:
+# > make
+#
+# Note that the .exe produced won't work as is, you need to put datafile
+# in the right path, and a few other things, see the "package_dos" target
+# of the main UNIX Makefile in Liquid War source distribution.
 
 C_PATH=./src/
 H_PATH=./src/
 ASM_PATH=./src/
 OBJ_PATH=./src/
-OBJ_EXT=.dos.o
+OBJ_EXT=.dj.o
 
 OBJ_NAMES=\
 about \
@@ -150,7 +180,7 @@ OBJ_NAMES_MAPGEN=\
 OBJ_FILES=$(addprefix $(OBJ_PATH),$(addsuffix $(OBJ_EXT),$(OBJ_NAMES)))
 OBJ_FILES_MAPGEN=$(addprefix $(OBJ_PATH),$(addsuffix $(OBJ_EXT),$(OBJ_NAMES_MAPGEN)))
 
-C_FLAGS=-O3 -fomit-frame-pointer -I$(H_PATH)
+C_FLAGS=-O2 -fomit-frame-pointer -I$(H_PATH)
 C_COMPILE=gcc -c $< -o $@ $(C_FLAGS) -DDOS -DASM -DSNPRINTF
 ASM_COMPILE=gcc -c $< -o $@
 
