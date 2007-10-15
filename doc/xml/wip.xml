@@ -43,24 +43,28 @@
 	a steep learning curve, but it's yet clear and understandable.
       </elem>
       <elem>
-	Step 2: point on my repository, which is accessible (read-only) on
-	"http://ufoot.hd.free.fr/depot/pub/2005-freesoftware/liquidwar/".
-	Should this address move, try "http://ufoot.hd.free.fr/depot/pub/"
-	and browse until you find Liquid War.
+	Step 2: point on the repository, which is accessible (read-only) on
+	"http://arch.sv.gnu.org/archives/liquidwar/".
       </elem>
     </list>
     <text>
-      Note that "http://ufoot.hd.free.fr" is a personnal web server
-      located in my living room. It uses a simple DSL connection,
-      so bandwidth won't be exceptionnally high, and it may suffer
-      long and unexpected downtimes.
+      A typical set of tla commands would be:
     </text>
+    <code>
+tla register-archive http://arch.sv.gnu.org/archives/liquidwar
+tla get -A liquidwar@sv.gnu.org liquidwar6--stable
+    </code>
     <text>
       If you are interested, I can open this repository in read/write
       mode, however one of the points of GNU Arch is that it allows
       cooperative developpement with multiple depots, so this isn't
       mandatory. And anyways, importing myself patches received
       by email has never been a real burden.
+    </text>
+    <text>
+      Besides, most developpement is now done on Liquid War 6.
+      See "http://www.gnu.org/software/liquidwar6/" or
+      "http://www.ufoot.org/liquidwar/v6" for more informations.
     </text>
   </chap>
 </file>

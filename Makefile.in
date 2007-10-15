@@ -51,17 +51,17 @@ PACKAGE_SOURCE_TARGZ = $(PACKAGE_SOURCE_TAR).gz
 PACKAGE_BINARY_TAR = liquidwar-$(VERSION).$(TARGET).tar
 PACKAGE_BINARY_TGZ = liquidwar-$(VERSION).$(TARGET).tgz
 
-# the following line should be edited to match your configuration
-PACKAGE_WIN32_ALLEGDLL = /storage/download/liquidwar/v5/allegro/alleg42.dll
 PACKAGE_WIN32_DIR = LW5
 PACKAGE_WIN32_EXE = lwwin.exe lwwinsrv.exe lwwinmap.exe
 PACKAGE_WIN32_ZIP = lw$(VERSION_COMPACT)w.zip
-
 # the following line should be edited to match your configuration
-PACKAGE_DOS_CWSDPMI = /storage/download/liquidwar/v5/allegro/cwsdpmi.exe
+PACKAGE_WIN32_ALLEGDLL = /storage/download/liquidwar/v5/allegro/alleg42.dll
+
 PACKAGE_DOS_DIR = LW5
 PACKAGE_DOS_EXE = lwdos.exe lwdosmap.exe
 PACKAGE_DOS_ZIP = lw$(VERSION_COMPACT)d.zip
+# the following line should be edited to match your configuration
+PACKAGE_DOS_CWSDPMI = /storage/download/liquidwar/v5/allegro/cwsdpmi.exe
 
 PACKAGE_SOURCE_RPM_TARGET = /usr/src/rpm/SRPMS
 PACKAGE_SOURCE_RPM = liquidwar-$(VERSION)-$(VERSION_REL).src.rpm

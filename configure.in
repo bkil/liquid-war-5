@@ -426,7 +426,7 @@ dnl This flag allows the user to bypass the "-march=xxx" gcc option
 AC_MSG_CHECKING(for target specific optimizations)
 AC_ARG_ENABLE(target-opt,[  --disable-target-opt    Disable target specific optimizations],
 [
-  if test "$enableval" != "no" && test "$target_cpu" != "powerpc" ; then
+  if test "$I386" == "yes" && test "$enableval" != "no" ; then
     TARGET_OPT=yes
     AC_MSG_RESULT([enabled])
   else
@@ -435,8 +435,13 @@ AC_ARG_ENABLE(target-opt,[  --disable-target-opt    Disable target specific opti
   fi
 ],
 [
-  TARGET_OPT=yes
-  AC_MSG_RESULT([enabled])
+  if test "$I386" == "yes" ; then
+    TARGET_OPT=yes
+    AC_MSG_RESULT([enabled])
+  else
+    TARGET_OPT=no
+    AC_MSG_RESULT([disabled])
+  fi
 ])
 AC_SUBST(TARGET_OPT)
 

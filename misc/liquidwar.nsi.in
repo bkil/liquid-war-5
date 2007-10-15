@@ -39,7 +39,7 @@ Section "Liquid War (required)"
   SetOutPath $INSTDIR
   
   ; Put file there
-  File "..\lw@VERSION_COMPACT@w.exe"
+  File "..\lwwin.exe"
   
   ; Write the installation path into the registry
   WriteRegStr HKLM SOFTWARE\Liquid_War_@VERSION_COMPACT@ "Install_Dir" "$INSTDIR"
@@ -58,7 +58,7 @@ Section "Start Menu Shortcuts"
 
   CreateDirectory "$SMPROGRAMS\Liquid War @VERSION@"
   CreateShortCut "$SMPROGRAMS\Liquid War @VERSION@\Uninstall.lnk" "$INSTDIR\uninstall.exe" "" "$INSTDIR\uninstall.exe" 0
-  CreateShortCut "$SMPROGRAMS\Liquid War @VERSION@\Play Liquid War.lnk" "$INSTDIR\lw@VERSION_COMPACT@w.exe" "" "$INSTDIR\lw@VERSION_COMPACT@w.exe" 0
+  CreateShortCut "$SMPROGRAMS\Liquid War @VERSION@\Play Liquid War.lnk" "$INSTDIR\lwwin.exe" "" "$INSTDIR\lwwin.exe" 0
   
 SectionEnd
 
@@ -73,7 +73,7 @@ Section "Uninstall"
   DeleteRegKey HKLM SOFTWARE\Liquid_War_@VERSION_COMPACT@
 
   ; Remove files and uninstaller
-  Delete $INSTDIR\lw@VERSION_COMPACT@.exe
+  Delete $INSTDIR\lwwin.exe
   Delete $INSTDIR\uninstall.exe
 
   ; Remove shortcuts, if any

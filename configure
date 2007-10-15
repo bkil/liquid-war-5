@@ -6392,7 +6392,7 @@ echo $ECHO_N "checking for target specific optimizations... $ECHO_C" >&6; }
 # Check whether --enable-target-opt was given.
 if test "${enable_target_opt+set}" = set; then
   enableval=$enable_target_opt;
-  if test "$enableval" != "no" && test "$target_cpu" != "powerpc" ; then
+  if test "$I386" == "yes" && test "$enableval" != "no" ; then
     TARGET_OPT=yes
     { echo "$as_me:$LINENO: result: enabled" >&5
 echo "${ECHO_T}enabled" >&6; }
@@ -6404,9 +6404,15 @@ echo "${ECHO_T}disabled" >&6; }
 
 else
 
-  TARGET_OPT=yes
-  { echo "$as_me:$LINENO: result: enabled" >&5
+  if test "$I386" == "yes" ; then
+    TARGET_OPT=yes
+    { echo "$as_me:$LINENO: result: enabled" >&5
 echo "${ECHO_T}enabled" >&6; }
+  else
+    TARGET_OPT=no
+    { echo "$as_me:$LINENO: result: disabled" >&5
+echo "${ECHO_T}disabled" >&6; }
+  fi
 
 fi
 
