@@ -52,7 +52,9 @@
 /*==================================================================*/
 
 #include <allegro.h>
+#ifdef WIN32
 #include <winalleg.h>
+#endif
 
 #include "popupgen.h"
 #include "lang.h"
