@@ -80,7 +80,7 @@
 #define NAME_SIZE 10
 #define PASSWORD_SIZE 20
 #define COMMENT_SIZE 100
-#define URL_SIZE 300    
+#define URL_SIZE 300
 
 /*
  * On windows there are problems linking with random() so we use
@@ -95,4 +95,3 @@
 #endif
 
 #endif
-

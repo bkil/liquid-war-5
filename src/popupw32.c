@@ -51,9 +51,8 @@
 /* includes                                                         */
 /*==================================================================*/
 
-#ifdef WIN32
-#include <windows.h>
-#endif
+#include <allegro.h>
+#include <winalleg.h>
 
 #include "popupgen.h"
 #include "lang.h"

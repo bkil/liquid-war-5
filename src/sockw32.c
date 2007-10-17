@@ -187,6 +187,7 @@ lw_sock_accept (int *new_sock, char *ip, int *port,
   int res;
   int enable = 1;
   int disable = 0;
+  unsigned long disable_ul = 0;
   struct linger li;
 
   *new_sock = -1;
@@ -223,7 +224,7 @@ lw_sock_accept (int *new_sock, char *ip, int *port,
 	      setsockopt (*new_sock, SOL_SOCKET, SO_LINGER,
 			  (char *) &li, sizeof (struct linger));
 
-	      ioctlsocket (*new_sock, FIONBIO, &disable);
+	      ioctlsocket (*new_sock, FIONBIO, &disable_ul);
 
 	      strncpy (ip, inet_ntoa (name.sin_addr), LW_SOCK_IP_SIZE - 1);
 	      ip[LW_SOCK_IP_SIZE - 1] = 0;
@@ -250,6 +251,7 @@ lw_sock_connect (int *sock, char *ip, int port)
   struct sockaddr_in name;
   int enable = 1;
   int disable = 0;
+  unsigned long disable_ul = 0;
   struct linger li;
 
   *sock = socket (AF_INET, SOCK_STREAM, 0);
@@ -278,7 +280,7 @@ lw_sock_connect (int *sock, char *ip, int port)
 	      setsockopt (*sock, SOL_SOCKET, SO_LINGER,
 			  (char *) &li, sizeof (struct linger));
 
-	      ioctlsocket (*sock, FIONBIO, &disable);
+	      ioctlsocket (*sock, FIONBIO, &disable_ul);
 
 	      result = 1;
 	    }

@@ -44,9 +44,9 @@
 # > make install
 #
 # Then to compile Liquid War:
-# > make
+# > make -f makefile.dj > make-log.txt 2> make-err.txt
 #
-# Note that the .exe produced won't work as is, you need to put datafile
+# Note that the .exe produced won't work as is, you need to put the datafile
 # in the right path, and a few other things, see the "package_dos" target
 # of the main UNIX Makefile in Liquid War source distribution.
 
@@ -180,7 +180,7 @@ OBJ_NAMES_MAPGEN=\
 OBJ_FILES=$(addprefix $(OBJ_PATH),$(addsuffix $(OBJ_EXT),$(OBJ_NAMES)))
 OBJ_FILES_MAPGEN=$(addprefix $(OBJ_PATH),$(addsuffix $(OBJ_EXT),$(OBJ_NAMES_MAPGEN)))
 
-C_FLAGS=-O2 -fomit-frame-pointer -I$(H_PATH)
+C_FLAGS=-O2 -fomit-frame-pointer -Wall -I$(H_PATH)
 C_COMPILE=gcc -c $< -o $@ $(C_FLAGS) -DDOS -DASM -DSNPRINTF
 ASM_COMPILE=gcc -c $< -o $@
 

@@ -30,9 +30,9 @@
 # > make install
 #
 # Then to compile Liquid War:
-# > mingw32-make
+# > mingw32-make -f makefile.mgw > make-log.txt 2> make-err.txt
 #
-# Note that the .exe produced won't work as is, you need to put datafile
+# Note that the .exe produced won't work as is, you need to put the datafile
 # in the right path, and a few other things, see the "package_win32" target
 # of the main UNIX Makefile in Liquid War source distribution.
 
@@ -143,7 +143,6 @@ wwwcli \
 glouglou \
 monster \
 spread \
-../utils/snprintf/snprintf \
 lwwin 
 
 OBJ_NAMES_SRV=\
@@ -169,8 +168,7 @@ srvteam \
 srvtime \
 startinf \
 thrdw32 \
-wwwsrv \
-../utils/snprintf/snprintf
+wwwsrv
 
 OBJ_NAMES_MAPGEN=\
 ../utils/lwmapgen/big_quad \
@@ -199,8 +197,8 @@ OBJ_FILES_SRV=$(addprefix $(OBJ_PATH),$(addsuffix $(OBJ_EXT),$(OBJ_NAMES_SRV)))
 
 OBJ_FILES_MAPGEN=$(addprefix $(OBJ_PATH),$(addsuffix $(OBJ_EXT),$(OBJ_NAMES_MAPGEN)))
 
-C_FLAGS=-O2 -Wall -I$(H_PATH)
-C_COMPILE=gcc $(C_FLAGS) -o $@ -c $<
+C_FLAGS=-O2 -fomit-frame-pointer -Wall -I$(H_PATH)
+C_COMPILE=gcc $(C_FLAGS) -o $@ -c $< -DWIN32 -DASM
 ASM_COMPILE=gcc $(C_FLAGS) -o $@ -c $<
 RC_COMPILE=windres -o $@ -i $<
 

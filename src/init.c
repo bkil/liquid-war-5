@@ -55,6 +55,9 @@
 #include <allegro.h>
 #include <stdlib.h>
 #include <time.h>
+#ifdef DOS
+#include <dos.h>
+#endif
 
 #include "base.h"
 #include "config.h"

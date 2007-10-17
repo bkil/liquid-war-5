@@ -116,7 +116,8 @@ lw_exec_cmd (char *cmd)
       if (FormatMessage (FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS, NULL, error_int, MAKELANGID (LANG_NEUTRAL, SUBLANG_DEFAULT),	// Default language
 			 (LPTSTR) & message_buf, 0, NULL))
 	{
-	  LW_MACRO_SPRINTF2 (error_str, "%d: \"%s", error_int, message_buf);
+	  LW_MACRO_SPRINTF2 (error_str, "%d: \"%s", error_int,
+			     (char *) message_buf);
 	  LocalFree (message_buf);
 
 	  /*

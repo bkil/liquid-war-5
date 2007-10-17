@@ -8,14 +8,14 @@
 Name "Liquid War @VERSION@"
 
 ; The file to write
-OutFile "liquidwar-setup-@VERSION@.exe"
+OutFile "lw@VERSION_COMPACT@.exe"
 
 ; The default installation directory
-InstallDir $PROGRAMFILES\liquidwar-@VERSION@
+InstallDir "$PROGRAMFILES\Liquid War"
 
 ; Registry key to check for directory (so if you install again, it will 
 ; overwrite the old one automatically)
-InstallDirRegKey HKLM "Software\Liquid_War_@VERSION_COMPACT@" "Install_Dir"
+InstallDirRegKey HKLM "Software\Liquid_War_5" "Install_Dir"
 
 ;--------------------------------
 
@@ -31,24 +31,37 @@ UninstPage instfiles
 ;--------------------------------
 
 ; The stuff to install
-Section "Liquid War (required)"
+Section "Liquid War @VERSION@ (required)"
 
   SectionIn RO
   
   ; Set output path to the installation directory.
   SetOutPath $INSTDIR
-  
+
   ; Put file there
-  File "..\lwwin.exe"
+  File "lwwin.exe"
+  File "lwwinmap.exe"
+  File "lwwinsrv.exe"
+  File "alleg42.dll"
+  File "changes.txt"
+  File "license.txt"
+  File "readme.txt"
+  File "readmede.txt"
+  File "readmedk.txt"
+  File "readmefr.txt"
+  File /r "custom"
+  File /r "data"
+  File /r "doc"
+  File /r "misc"
   
   ; Write the installation path into the registry
-  WriteRegStr HKLM SOFTWARE\Liquid_War_@VERSION_COMPACT@ "Install_Dir" "$INSTDIR"
+  WriteRegStr HKLM "SOFTWARE\Liquid_War_5" "Install_Dir" "$INSTDIR"
   
   ; Write the uninstall keys for Windows
-  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Liquid_War_@VERSION_COMPACT@" "DisplayName" "Liquid War @VERSION@"
-  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Liquid_War_@VERSION_COMPACT@" "UninstallString" '"$INSTDIR\uninstall.exe"'
-  WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Liquid_War_@VERSION_COMPACT@" "NoModify" 1
-  WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Liquid_War_@VERSION_COMPACT@" "NoRepair" 1
+  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Liquid_War_5" "DisplayName" "Liquid War @VERSION@"
+  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Liquid_War_5" "UninstallString" '"$INSTDIR\uninstall.exe"'
+  WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Liquid_War_5" "NoModify" 1
+  WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Liquid_War_5" "NoRepair" 1
   WriteUninstaller "uninstall.exe"
   
 SectionEnd
@@ -56,9 +69,10 @@ SectionEnd
 ; Optional section (can be disabled by the user)
 Section "Start Menu Shortcuts"
 
-  CreateDirectory "$SMPROGRAMS\Liquid War @VERSION@"
-  CreateShortCut "$SMPROGRAMS\Liquid War @VERSION@\Uninstall.lnk" "$INSTDIR\uninstall.exe" "" "$INSTDIR\uninstall.exe" 0
-  CreateShortCut "$SMPROGRAMS\Liquid War @VERSION@\Play Liquid War.lnk" "$INSTDIR\lwwin.exe" "" "$INSTDIR\lwwin.exe" 0
+  CreateDirectory "$SMPROGRAMS\Liquid War"
+  CreateShortCut "$SMPROGRAMS\Liquid War\Uninstall.lnk" "$INSTDIR\uninstall.exe" "" "$INSTDIR\uninstall.exe" 0
+  CreateShortCut "$SMPROGRAMS\Liquid War\Liquid War.lnk" "$INSTDIR\lwwin.exe" "" "$INSTDIR\lwwin.exe" 0
+  CreateShortCut "$SMPROGRAMS\Liquid War\Liquid War server.lnk" "$INSTDIR\lwwinsrv.exe" "" "$INSTDIR\lwwinsrv.exe" 0
   
 SectionEnd
 
@@ -69,18 +83,37 @@ SectionEnd
 Section "Uninstall"
   
   ; Remove registry keys
-  DeleteRegKey HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Liquid_War_@VERSION_COMPACT@"
-  DeleteRegKey HKLM SOFTWARE\Liquid_War_@VERSION_COMPACT@
+  DeleteRegKey HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Liquid_War_5"
+  DeleteRegKey HKLM "SOFTWARE\Liquid_War_5"
 
   ; Remove files and uninstaller
-  Delete $INSTDIR\lwwin.exe
-  Delete $INSTDIR\uninstall.exe
+  Delete "$INSTDIR\*.exe"
+  Delete "$INSTDIR\*.dll"
+  Delete "$INSTDIR\*.txt"
+  Delete "$INSTDIR\custom\map\*.*"
+  Delete "$INSTDIR\custom\music\*.*"
+  Delete "$INSTDIR\custom\texture\*.*"
+  Delete "$INSTDIR\data\*.*"
+  Delete "$INSTDIR\doc\html\*.*"
+  Delete "$INSTDIR\doc\pdf\*.*"
+  Delete "$INSTDIR\doc\ps\*.*"
+  Delete "$INSTDIR\doc\txt\*.*"
+  Delete "$INSTDIR\misc\*.*"
 
   ; Remove shortcuts, if any
-  Delete "$SMPROGRAMS\Liquid War @VERSION@\*.*"
+  Delete "$SMPROGRAMS\Liquid War\*.*"
 
   ; Remove directories used
-  RMDir "$SMPROGRAMS\Liquid War @VERSION@"
+  RMDir "$SMPROGRAMS\Liquid War"
+  RMDir "$INSTDIR\custom\map"
+  RMDir "$INSTDIR\custom\music"
+  RMDir "$INSTDIR\custom\texture"
+  RMDir "$INSTDIR\data"
+  RMDir "$INSTDIR\doc\html"
+  RMDir "$INSTDIR\doc\pdf"
+  RMDir "$INSTDIR\doc\ps"
+  RMDir "$INSTDIR\doc\txt"
+  RMDir "$INSTDIR\misc"
   RMDir "$INSTDIR"
 
 SectionEnd

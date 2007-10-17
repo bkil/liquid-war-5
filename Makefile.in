@@ -51,17 +51,19 @@ PACKAGE_SOURCE_TARGZ = $(PACKAGE_SOURCE_TAR).gz
 PACKAGE_BINARY_TAR = liquidwar-$(VERSION).$(TARGET).tar
 PACKAGE_BINARY_TGZ = liquidwar-$(VERSION).$(TARGET).tgz
 
+PACKAGE_DOS_DIR = LW5
+PACKAGE_DOS_EXE = lwdos.exe lwdosmap.exe
+PACKAGE_DOS_ZIP = lw$(VERSION_COMPACT)d.zip
+# the following line should be edited to match your configuration
+PACKAGE_DOS_CWSDPMI = /storage/download/liquidwar/v5/allegro/cwsdpmi.exe
+
 PACKAGE_WIN32_DIR = LW5
 PACKAGE_WIN32_EXE = lwwin.exe lwwinsrv.exe lwwinmap.exe
 PACKAGE_WIN32_ZIP = lw$(VERSION_COMPACT)w.zip
 # the following line should be edited to match your configuration
 PACKAGE_WIN32_ALLEGDLL = /storage/download/liquidwar/v5/allegro/alleg42.dll
 
-PACKAGE_DOS_DIR = LW5
-PACKAGE_DOS_EXE = lwdos.exe lwdosmap.exe
-PACKAGE_DOS_ZIP = lw$(VERSION_COMPACT)d.zip
-# the following line should be edited to match your configuration
-PACKAGE_DOS_CWSDPMI = /storage/download/liquidwar/v5/allegro/cwsdpmi.exe
+PACKAGE_NSIS_EXE = lw$(VERSION_COMPACT).exe
 
 PACKAGE_SOURCE_RPM_TARGET = /usr/src/rpm/SRPMS
 PACKAGE_SOURCE_RPM = liquidwar-$(VERSION)-$(VERSION_REL).src.rpm
@@ -213,6 +215,7 @@ world_clean:
 	@rm -f $(PACKAGE_BINARY_RPM)
 	@rm -f $(PACKAGE_DOS_ZIP)
 	@rm -f $(PACKAGE_WIN32_ZIP)
+	@rm -f $(PACKAGE_NSIS_EXE)
 
 # target used when preparing packages
 packageclean: clean world_clean
@@ -278,6 +281,45 @@ $(PACKAGE_SOURCE_TARGZ):
 	@echo "Deleting temporary directory."
 	@rm -rf $(PACKAGE_TMP) 
 
+package_dos: $(PACKAGE_DOS_ZIP)
+
+$(PACKAGE_DOS_ZIP): $(PACKAGE_DOS_EXE) $(PACKAGE_DOS_CWSDPMI)
+	@echo "Building data."
+	@$(GMAKE) -C data
+	@echo "Building doc."
+	@$(GMAKE) -C doc
+	@echo "Creating temporary directory."
+	@rm -rf $(PACKAGE_TMP)
+	@install -d $(PACKAGE_TMP)/$(PACKAGE_DOS_DIR)
+	@echo "Copying files."
+	@cp $(PACKAGE_DOS_EXE) $(PACKAGE_TMP)/$(PACKAGE_DOS_DIR)
+	@cp $(PACKAGE_DOS_CWSDPMI) $(PACKAGE_TMP)/$(PACKAGE_DOS_DIR)
+	@cp README $(PACKAGE_TMP)/$(PACKAGE_DOS_DIR)/readme.txt
+	@cp README.fr $(PACKAGE_TMP)/$(PACKAGE_DOS_DIR)/readmefr.txt
+	@cp README.de $(PACKAGE_TMP)/$(PACKAGE_DOS_DIR)/readmede.txt
+	@cp README.dk $(PACKAGE_TMP)/$(PACKAGE_DOS_DIR)/readmedk.txt
+	@cp COPYING $(PACKAGE_TMP)/$(PACKAGE_DOS_DIR)/license.txt
+	@cp ChangeLog $(PACKAGE_TMP)/$(PACKAGE_DOS_DIR)/changes.txt
+	@cp misc/liquidwar.ico $(PACKAGE_TMP)/$(PACKAGE_DOS_DIR)/lw.ico
+	@install -d $(PACKAGE_TMP)/$(PACKAGE_DOS_DIR)/data
+	@cp data/liquidwar.dat $(PACKAGE_TMP)/$(PACKAGE_DOS_DIR)/data/lw.dat
+	@install -d $(PACKAGE_TMP)/$(PACKAGE_DOS_DIR)/custom
+	@cp -r custom/map $(PACKAGE_TMP)/$(PACKAGE_DOS_DIR)/custom
+	@cp -r custom/texture $(PACKAGE_TMP)/$(PACKAGE_DOS_DIR)/custom
+	@cp -r custom/music $(PACKAGE_TMP)/$(PACKAGE_DOS_DIR)/custom
+	@install -d $(PACKAGE_TMP)/$(PACKAGE_DOS_DIR)/doc
+	@cp -r doc/txt $(PACKAGE_TMP)/$(PACKAGE_DOS_DIR)/doc
+	@echo "Cleaning up."
+	@touch $(PACKAGE_TMP)/$(PACKAGE_DOS_DIR)/.cvsignore
+	@find $(PACKAGE_TMP)/$(PACKAGE_DOS_DIR) -name .cvsignore -o -name CVS -o -name .arch-ids -o -name "{arch}" -o -name DUMMY -o -name "*.inc" -o -name "*.in" | xargs rm -rf
+	@cp fix.sh $(PACKAGE_TMP)
+	@cd $(PACKAGE_TMP)/$(PACKAGE_DOS_DIR) && $(PACKAGE_TMP)/fix.sh dos 
+	@echo "Zipping."
+	@cd $(PACKAGE_TMP) && zip -r -9 $(PACKAGE_DOS_ZIP) $(PACKAGE_DOS_DIR)
+	@mv $(PACKAGE_TMP)/$(PACKAGE_DOS_ZIP) .
+	@echo "Deleting temporary directory."
+	@rm -rf $(PACKAGE_TMP) 
+
 package_win32: $(PACKAGE_WIN32_ZIP)
 
 $(PACKAGE_WIN32_ZIP): $(PACKAGE_WIN32_EXE) $(PACKAGE_WIN32_ALLEGDLL)
@@ -318,44 +360,17 @@ $(PACKAGE_WIN32_ZIP): $(PACKAGE_WIN32_EXE) $(PACKAGE_WIN32_ALLEGDLL)
 	@echo "Deleting temporary directory."
 	@rm -rf $(PACKAGE_TMP) 
 
-package_dos: $(PACKAGE_DOS_ZIP)
+package_nsis: $(PACKAGE_NSIS_EXE)
 
-$(PACKAGE_DOS_ZIP): $(PACKAGE_DOS_EXE) $(PACKAGE_DOS_CWSDPMI)
-	@echo "Building data."
-	@$(GMAKE) -C data
-	@echo "Building doc."
-	@$(GMAKE) -C doc
-	@echo "Creating temporary directory."
+$(PACKAGE_NSIS_EXE): $(PACKAGE_WIN32_ZIP)
 	@rm -rf $(PACKAGE_TMP)
-	@install -d $(PACKAGE_TMP)/$(PACKAGE_DOS_DIR)
-	@echo "Copying files."
-	@cp $(PACKAGE_DOS_EXE) $(PACKAGE_TMP)/$(PACKAGE_DOS_DIR)
-	@cp $(PACKAGE_DOS_CWSDPMI) $(PACKAGE_TMP)/$(PACKAGE_DOS_DIR)
-	@cp README $(PACKAGE_TMP)/$(PACKAGE_DOS_DIR)/readme.txt
-	@cp README.fr $(PACKAGE_TMP)/$(PACKAGE_DOS_DIR)/readmefr.txt
-	@cp README.de $(PACKAGE_TMP)/$(PACKAGE_DOS_DIR)/readmede.txt
-	@cp README.dk $(PACKAGE_TMP)/$(PACKAGE_DOS_DIR)/readmedk.txt
-	@cp COPYING $(PACKAGE_TMP)/$(PACKAGE_DOS_DIR)/license.txt
-	@cp ChangeLog $(PACKAGE_TMP)/$(PACKAGE_DOS_DIR)/changes.txt
-	@cp misc/liquidwar.ico $(PACKAGE_TMP)/$(PACKAGE_DOS_DIR)/lw.ico
-	@install -d $(PACKAGE_TMP)/$(PACKAGE_DOS_DIR)/data
-	@cp data/liquidwar.dat $(PACKAGE_TMP)/$(PACKAGE_DOS_DIR)/data/lw.dat
-	@install -d $(PACKAGE_TMP)/$(PACKAGE_DOS_DIR)/custom
-	@cp -r custom/map $(PACKAGE_TMP)/$(PACKAGE_DOS_DIR)/custom
-	@cp -r custom/texture $(PACKAGE_TMP)/$(PACKAGE_DOS_DIR)/custom
-	@cp -r custom/music $(PACKAGE_TMP)/$(PACKAGE_DOS_DIR)/custom
-	@install -d $(PACKAGE_TMP)/$(PACKAGE_DOS_DIR)/doc
-	@cp -r doc/txt $(PACKAGE_TMP)/$(PACKAGE_DOS_DIR)/doc
-	@echo "Cleaning up."
-	@touch $(PACKAGE_TMP)/$(PACKAGE_DOS_DIR)/.cvsignore
-	@find $(PACKAGE_TMP)/$(PACKAGE_DOS_DIR) -name .cvsignore -o -name CVS -o -name .arch-ids -o -name "{arch}" -o -name DUMMY -o -name "*.inc" -o -name "*.in" | xargs rm -rf
-	@cp fix.sh $(PACKAGE_TMP)
-	@cd $(PACKAGE_TMP)/$(PACKAGE_DOS_DIR) && $(PACKAGE_TMP)/fix.sh dos 
-	@echo "Zipping."
-	@cd $(PACKAGE_TMP) && zip -r -9 $(PACKAGE_DOS_ZIP) $(PACKAGE_DOS_DIR)
-	@mv $(PACKAGE_TMP)/$(PACKAGE_DOS_ZIP) .
-	@echo "Deleting temporary directory."
-	@rm -rf $(PACKAGE_TMP) 
+	@install -d $(PACKAGE_TMP)
+	@cp $(PACKAGE_WIN32_ZIP) $(PACKAGE_TMP)
+	@cd $(PACKAGE_TMP) && unzip $(PACKAGE_WIN32_ZIP)
+	@cp misc/liquidwar.nsi $(PACKAGE_TMP)/$(PACKAGE_WIN32_DIR)
+	@cd $(PACKAGE_TMP)/$(PACKAGE_WIN32_DIR) && makensis liquidwar.nsi
+	@cp $(PACKAGE_TMP)/$(PACKAGE_WIN32_DIR)/$(PACKAGE_NSIS_EXE) .
+	@rm -rf $(PACKAGE_TMP)
 
 package_binary: $(PACKAGE_BINARY_TGZ)
 

@@ -53,6 +53,9 @@
 /*==================================================================*/
 
 #include <allegro.h>
+#ifdef DOS
+#include <dos.h>
+#endif
 
 #include "bigdata.h"
 #include "config.h"

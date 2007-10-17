@@ -1,4 +1,13 @@
 
+2007-10-17  Christian Mauduit (ufoot@ufoot.org)
+
+	* Released 5.6.4.
+
+	* Updated config.guess & config.sub
+
+	* NSIS packaging (windows .exe installer).
+
+
 2007-10-15  Christian Mauduit (ufoot@ufoot.org)
 
 	* MSVC -> MinGW
@@ -75,16 +84,22 @@
 2005-11-27  Christian Mauduit (ufoot@ufoot.org)
 
 	* Released 5.6.3.
+
 	* Added checks to avoid FD_SET with an arg1 of -1.
+
 	* Added checks on socket validity on client network code.
+
 	* Fixed it for good, on UNIX.
+
 	* Fixed network bug which caused connect screen to become irresponsive.
 
 
 2005-11-26  Christian Mauduit (ufoot@ufoot.org)
 
 	* Tried to released 5.6.3, failed because of network bug.
+
 	* Fixes for Allegro 4.2 / GCC 4.
+
 	* Updated docs.
 
 
@@ -125,25 +140,35 @@
 2005-06-29  Christian Mauduit (ufoot@ufoot.org)
 
 	* Fixed the package generators to avoid arch system dirs
+
 	* Finally updated the makedoc.py script to use sax instead of xmllib
+
 	* Reactivated i386 assembly code for x86_64.
+
 	* Reindented code with indent and splint.
+
 	* Minor change in level menu layout to handle resolution display.
+
 	* Waves are activated by default only if assembly code is available.
+
 	* Added patches by Dave Vasilevsky to support Mac OS X.
 
 	
 2005-06-21  Christian Mauduit (ufoot@ufoot.org)
 
 	* Game now requires Allegro 4.2.0beta3 to compile
+
 	* Removed most compile warnings, due to allegro deprecated functions
+
 	* Fixed alleg2.c to match allegro 4.2 needs.
 
 	
 2005-05-29  Christian Mauduit (ufoot@ufoot.org)
 
 	* Copyright 2004 -> 2005
+
 	* Added infos about GNU Arch depot (wip)
+
 	* Added Fanfic by Gavin
 
 	
@@ -588,6 +613,7 @@
 2002-12-13  Christian Mauduit (ufoot@ufoot.org)
 
 	* Added translations of the game description in the RPM spec file.
+
 	* Updated the "short" description of the game.
 
 	* ChangeLog is now included in the Windows & DOS releases.

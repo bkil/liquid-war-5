@@ -58,6 +58,10 @@
 #include "popupgen.h"
 #endif
 
+#ifdef DOS
+#include <conio.h>
+#endif
+
 #include "basicopt.h"
 #include "config.h"
 #include "exit.h"
