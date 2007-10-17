@@ -73,6 +73,7 @@ Section "Start Menu Shortcuts"
   CreateShortCut "$SMPROGRAMS\Liquid War\Uninstall.lnk" "$INSTDIR\uninstall.exe" "" "$INSTDIR\uninstall.exe" 0
   CreateShortCut "$SMPROGRAMS\Liquid War\Liquid War.lnk" "$INSTDIR\lwwin.exe" "" "$INSTDIR\lwwin.exe" 0
   CreateShortCut "$SMPROGRAMS\Liquid War\Liquid War server.lnk" "$INSTDIR\lwwinsrv.exe" "" "$INSTDIR\lwwinsrv.exe" 0
+  CreateShortCut "$SMPROGRAMS\Liquid War\Documentation.lnk" "$INSTDIR\doc\html\index.html" "" "$INSTDIR\doc\html\index.html" 0
   
 SectionEnd
 
@@ -104,7 +105,6 @@ Section "Uninstall"
   Delete "$SMPROGRAMS\Liquid War\*.*"
 
   ; Remove directories used
-  RMDir "$SMPROGRAMS\Liquid War"
   RMDir "$INSTDIR\custom\map"
   RMDir "$INSTDIR\custom\music"
   RMDir "$INSTDIR\custom\texture"
@@ -115,5 +115,7 @@ Section "Uninstall"
   RMDir "$INSTDIR\doc\txt"
   RMDir "$INSTDIR\misc"
   RMDir "$INSTDIR"
+
+  RMDir "$SMPROGRAMS\Liquid War"
 
 SectionEnd
