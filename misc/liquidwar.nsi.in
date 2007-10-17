@@ -31,7 +31,7 @@ UninstPage instfiles
 ;--------------------------------
 
 ; The stuff to install
-Section "Liquid War @VERSION@ (required)"
+Section "Liquid War (required)"
 
   SectionIn RO
   
