@@ -1,4 +1,8 @@
 
+2007-11-16  Christian Mauduit (ufoot@ufoot.org)
+
+	* Fixed CPU detection, ASM was compiled on x86_64 but isn't linkable.
+
 2007-10-17  Christian Mauduit (ufoot@ufoot.org)
 
 	* Released 5.6.4.
