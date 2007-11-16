@@ -6024,7 +6024,7 @@ fi
 
 
 I386="no"
-for i in i386 i486 i586 i686 i786 x86_64 ; do
+for i in i386 i486 i586 i686 ; do
   if test "$i" = "$target_cpu" ; then
     I386="yes"
   fi;
