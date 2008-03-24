@@ -243,7 +243,7 @@ lw_srvchan_handle_version (int sock, LW_NETMESS * mess, int *ok)
        */
       for (i = 0; ACCEPTED_VERSIONS[i] != NULL; ++i)
 	{
-	  if (strcmp (mess->argv[1], ACCEPTED_VERSIONS[i]) == 0)
+	  if (strcmp (mess->argv[0], ACCEPTED_VERSIONS[i]) == 0)
 	    {
 	      (*ok) = 1;
 	      result = 1;

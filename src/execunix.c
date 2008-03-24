@@ -52,9 +52,11 @@
 /*==================================================================*/
 
 #include <sys/types.h>
+#include <sys/wait.h>
 #include <stdlib.h>
 #include <unistd.h>
 #include <errno.h>
+#include <signal.h>
 
 #include "execgen.h"
 #include "log.h"
@@ -72,6 +74,14 @@
 /* static functions                                                 */
 /*==================================================================*/
 
+static void
+handler_sigchld (int sig)
+{
+  sig = sig;			// useless parameter
+  wait (NULL);
+  return;
+}
+
 /*==================================================================*/
 /* global functions                                                 */
 /*==================================================================*/
@@ -86,6 +96,16 @@ lw_exec_cmd (char *cmd)
   int result = 0;
   pid_t pid;
   char error_str[LW_EXEC_ERROR_SIZE];
+  struct sigaction action;
+
+  sigemptyset (&action.sa_mask);
+  action.sa_flags = 0;
+  action.sa_handler = handler_sigchld;
+
+  if (sigaction (SIGCHLD, &action, NULL) == -1)
+    {
+      log_println_str ("Unable to set SIGCHLD callback!");
+    }
 
   pid = fork ();
 
