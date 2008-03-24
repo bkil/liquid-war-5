@@ -68,10 +68,11 @@
 /* Constants                                                        */
 /*==================================================================*/
 
-static char ACCEPTED_VERSIONS={"5.6.3", 
-                               "5.6.4",
-			       LW_VERSION, 
-			       NULL};
+static char ACCEPTED_VERSIONS = { "5.6.3",
+  "5.6.4",
+  LW_VERSION,
+  NULL
+};
 
 /*==================================================================*/
 /* static functions                                                 */
@@ -240,9 +241,9 @@ lw_srvchan_handle_version (int sock, LW_NETMESS * mess, int *ok)
        * We accept "some" versions... But cross-version connections are
        * not recommended...
        */
-      for (i=0; ACCEPTED_VERSIONS[i]!=NULL; ++i) 
-        {
-          if (strcmp (mess->argv[1], ACCEPTED_VERSIONS[i]) == 0)
+      for (i = 0; ACCEPTED_VERSIONS[i] != NULL; ++i)
+	{
+	  if (strcmp (mess->argv[1], ACCEPTED_VERSIONS[i]) == 0)
 	    {
 	      (*ok) = 1;
 	      result = 1;
