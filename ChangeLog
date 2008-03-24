@@ -1,6 +1,8 @@
 
 2008-03-24  Christian Mauduit (ufoot@ufoot.org)
 	
+	* Copyright 2007 -> 2008.
+
 	* Now somewhat version agnostic, will accept 5.6.3 & more.
 
 2007-11-16  Christian Mauduit (ufoot@ufoot.org)
