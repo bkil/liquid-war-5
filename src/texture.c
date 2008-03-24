@@ -283,6 +283,7 @@ lw_texture_archive_raw (const char *filename)
   BITMAP *bmp;
   PALETTE pal;
   char *result = NULL, *temp = NULL;
+  char *f = (char *) filename;
 
   bmp = load_bitmap (filename, pal);
   if (bmp)
@@ -298,8 +299,7 @@ lw_texture_archive_raw (const char *filename)
 	  if (temp)
 	    {
 	      red8col (bmp, pal, 0, TEXTURE_COLOR_NUMBER);
-	      texture_8to5 (bmp, pal, temp, 0, TEXTURE_COLOR_NUMBER,
-			    (char *) filename);
+	      texture_8to5 (bmp, pal, temp, 0, TEXTURE_COLOR_NUMBER, f);
 	    }
 	}
       destroy_bitmap (bmp);
