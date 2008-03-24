@@ -68,6 +68,11 @@
 /* Constants                                                        */
 /*==================================================================*/
 
+static char ACCEPTED_VERSIONS={"5.6.3", 
+                               "5.6.4",
+			       LW_VERSION, 
+			       NULL};
+
 /*==================================================================*/
 /* static functions                                                 */
 /*==================================================================*/
@@ -227,19 +232,21 @@ int
 lw_srvchan_handle_version (int sock, LW_NETMESS * mess, int *ok)
 {
   int result = 0;
+  int i = 0;
 
   if (mess->argc == 1)
     {
       /*
-       * OK, there's an argument, we check if it's the good version.
-       * This prevents form accepting random connections: if the client
-       * is not a liquidwar client with the right version number, it will
-       * be thrown away...
+       * We accept "some" versions... But cross-version connections are
+       * not recommended...
        */
-      if (strcmp (mess->argv[0], LW_VERSION) == 0)
-	{
-	  (*ok) = 1;
-	  result = 1;
+      for (i=0; ACCEPTED_VERSIONS[i]!=NULL; ++i) 
+        {
+          if (strcmp (mess->argv[1], ACCEPTED_VERSIONS[i]) == 0)
+	    {
+	      (*ok) = 1;
+	      result = 1;
+	    }
 	}
     }
 
