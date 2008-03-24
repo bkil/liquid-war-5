@@ -68,7 +68,7 @@
 /* Constants                                                        */
 /*==================================================================*/
 
-static char ACCEPTED_VERSIONS = { "5.6.3",
+static char *ACCEPTED_VERSIONS[] = { "5.6.3",
   "5.6.4",
   LW_VERSION,
   NULL
