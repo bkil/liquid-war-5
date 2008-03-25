@@ -1,4 +1,8 @@
 
+2008-03-25  Christian Mauduit (ufoot@ufoot.org)
+
+	* Added sample logrotate.d file.
+
 2008-03-24  Christian Mauduit (ufoot@ufoot.org)
 	
 	* Liquid War server no more leaves defunct childs on callback.
