@@ -1,4 +1,8 @@
 
+2008-05-10  Christian Mauduit (ufoot@ufoot.org)
+
+	* .desktop patch by SA Gevatter (FreeDesktop.org compliance)
+
 2008-03-25  Christian Mauduit (ufoot@ufoot.org)
 
 	* Added sample logrotate.d file.

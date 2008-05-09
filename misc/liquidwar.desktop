@@ -1,19 +1,10 @@
 [Desktop Entry]
-Version=1.0
-Encoding=UTF-8
-
-Name=Liquid War
-#Name[fr]=French translation of Name
-
-Comment=A unique multiplayer wargame
-#Name[fr]=French translation of Comment
-
 Type=Application
-Categories=Application;Game;ArcadeGame;
-
+Version=1.0
+Name=Liquid War
+Comment=A unique multiplayer wargame
 TryExec=liquidwar
 Exec=liquidwar
-FilePattern=liquidwar
-
-Icon=liquidwar.xpm
+Icon=liquidwar
+Categories=Game;ArcadeGame;
 Terminal=false
