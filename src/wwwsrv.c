@@ -104,8 +104,8 @@ lw_wwwsrv_init (LW_WWWSRV_DATA * data,
   data->port = port;
   data->busy_players = busy_players;
   data->max_players = max_players;
-  strncpy (data->password, password, URL_SIZE);
-  strncpy (data->comment, comment, URL_SIZE);
+  strncpy (data->password, password, PASSWORD_SIZE);
+  strncpy (data->comment, comment, COMMENT_SIZE);
 }
 
 /*------------------------------------------------------------------*/
