@@ -141,7 +141,13 @@ for i in i386 i486 i586 i686 ; do
   fi;
 done;
 
-ASM_POSSIBLE="\"$GNU_AS\" = \"yes\" -a \"$I386\" = \"yes\""
+dnl checking if we or on Mac OS/X
+OSX="no"
+if echo "$target_os" | grep "arwin"; then
+  OSX="yes"
+fi
+
+ASM_POSSIBLE="\"$GNU_AS\" = \"yes\" -a \"$I386\" = \"yes\" -a \"OSX\" = \"no\""
 
 dnl Assembly
 AC_MSG_CHECKING(for assembly)
@@ -455,7 +461,7 @@ dnl behavior, you can explicitly use a given executable to replace
 dnl "make" by exporting it in the environment var "$MAKE".
 AC_CHECK_PROG(GMAKE,gmake,yes,no)
 AC_MSG_CHECKING(for which GNU Make to use)
-if test "$MAKE" != "" ; then
+if which -s "$MAKE"; then
   GMAKE=$MAKE
 else
   if test "$GMAKE" = "yes" ; then

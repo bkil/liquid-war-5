@@ -1,5 +1,9 @@
 
-2009-08-31  Christian Mauduit (ufoot@ufoot.org)
+2009-08-19  Christian Mauduit (ufoot@ufoot.org)
+
+	* Makefile updates for native OS/X support.
+
+2009-07-31  Christian Mauduit (ufoot@ufoot.org)
 
 	* Security patch by Mikhail Yakshin.
 

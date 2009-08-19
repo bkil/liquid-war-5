@@ -573,9 +573,4 @@ main (int argc, char **argv)
 
 }
 
-#ifdef ALLEGRO_WINDOWS
 END_OF_MAIN ()
-#endif
-#ifdef ALLEGRO_UNIX
-  END_OF_MAIN ();
-#endif

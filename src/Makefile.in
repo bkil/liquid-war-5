@@ -10,7 +10,6 @@ TARGET_OPT =      @TARGET_OPT@
 STATIC =          @STATIC@
 SNPRINTF =        @SNPRINTF@
 ALCFLAGS =        @ALCFLAGS@
-ALLIBS =          @ALLIBS@
 ASM =             @ASM@
 DEBUG =           @DEBUG@
 EFENCE =          @EFENCE@
@@ -276,7 +275,7 @@ distclean:
 	@echo "Assembling" $<
 	@$(CMD_AS) $< -o $@
 
-config: print_config print_cmd_cc print_cmd_as
+config: print_config print_cmd_cc print_cmd_as print_cmd_ld
 	@true
 
 check:
@@ -299,7 +298,9 @@ print_cmd_as:
 	@echo "The command line to compile .s files in this directory is:"
 	@echo $(CMD_AS)
 
+print_cmd_ld:
+	@echo "The command line to link binaries in this directory is:"
+	@echo $(CC) $(LDFLAGS) $(LINK_OPTIONS) $(PTHREAD) $(EXTERN_LIBS) 
+
 include Makefile.dep
-
-
 
