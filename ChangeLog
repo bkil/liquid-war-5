@@ -1,4 +1,8 @@
 
+2009-11-14  Christian Mauduit (ufoot@ufoot.org)
+
+	* Trying to fix Debian Bug #555468
+
 2009-08-19  Christian Mauduit (ufoot@ufoot.org)
 
 	* Makefile updates for native OS/X support.
