@@ -14,7 +14,7 @@ OBJ=big_quad.o boxes.o bubbles.o circles.o circuit.o cut.o func.o hole.o \
 all: $(EXE)
 
 $(EXE): core main.c
-	$(CC) $(CFLAGS) $(LDFLAGS) main.c $(OBJ) -o $(EXE)
+	$(CC) $(CFLAGS) main.c $(OBJ) $(LDFLAGS) -o $(EXE)
 	#strip $(EXE)
 
 core: $(OBJ)
