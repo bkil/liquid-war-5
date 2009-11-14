@@ -1,7 +1,7 @@
 
 2009-11-14  Christian Mauduit (ufoot@ufoot.org)
 
-	* Fixed Debian Bug #555468
+	* Fixed Debian Bug #555468, missing -lm in mapgen Makefile
 
 2009-08-19  Christian Mauduit (ufoot@ufoot.org)
 
