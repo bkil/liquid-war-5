@@ -42,7 +42,7 @@ distclean:
 
 liquidwar%: liquidwar%.o $(SNPRINTF_FILES)
 	@echo "Building $@"
-	@$(CC) $(LDFLAGS) $(LINK_OPTIONS) $(ALLIBS) -o $@ $< $(SNPRINTF_FILES)
+	@$(CC) $(LDFLAGS) $(LINK_OPTIONS) -o $@ $< $(ALLIBS) $(SNPRINTF_FILES)
 
 %.o: %.c
 	@echo "Compiling" $<
