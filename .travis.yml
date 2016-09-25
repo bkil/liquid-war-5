@@ -1,0 +1,45 @@
+language: c
+
+git:
+  depth: 1
+
+matrix:
+  include:
+    - env: allegro4-container
+      dist: precise
+      sudo: false
+      addons:
+        apt:
+          packages:
+            - indent
+            - libasound2-dev
+            - libesd0-dev
+            - libjack-dev
+            - libxpm-dev
+            - libxxf86vm-dev
+            - libxml2-utils
+            - splint
+            - texinfo
+      cache:
+        directories:
+          - $HOME/install/liballegro
+      install: . script/travis-ci/deps.sh
+      script: script/travis-ci/linux.sh
+
+    - env: allegro4-trusty
+      dist: trusty
+      sudo: required
+      addons:
+        apt:
+          packages:
+            - indent
+            - liballegro4.2-dev
+            - libxml2-utils
+            - splint
+#      install: travis_retry sudo apt-get -yq install liballegro4.2-dev
+      script: script/travis-ci/linux.sh
+
+branches:
+  only:
+    - master
+
