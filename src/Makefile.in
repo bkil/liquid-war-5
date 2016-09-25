@@ -250,7 +250,7 @@ liquidwar-server: $(OBJ_FILES_SRV)
 
 liquidwar-mapgen: $(OBJ_FILES_MAPGEN)
 	@echo "Linking $@ (target=$(TARGET), debug=$(DEBUG), static=$(STATIC))"
-	@$(CC) $(LDFLAGS) $(LINK_OPTIONS) -o $@ $(OBJ_FILES_MAPGEN) $(PTHREAD) $(EXTERN_LIBS) 
+	@$(CC) $(LDFLAGS) $(LINK_OPTIONS) -o $@ $(OBJ_FILES_MAPGEN) -lm $(PTHREAD) $(EXTERN_LIBS)
 
 dep:
 	@find . \
