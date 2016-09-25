@@ -4,6 +4,9 @@ git:
   depth: 1
 
 matrix:
+  fast_finish: true
+  allow_failures:
+    - env: allegro5-container
   include:
     - env: allegro4-container
       dist: precise
@@ -38,6 +41,36 @@ matrix:
             - splint
 #      install: travis_retry sudo apt-get -yq install liballegro4.2-dev
       script: script/travis-ci/linux.sh
+
+    - dist: precise
+      sudo: false
+      env: allegro5-container
+      addons:
+        apt:
+          packages:
+            - indent
+            - libdumb1-dev
+            - libenet-dev
+            - libflac-dev
+            - libopenal-dev
+            - libphysfs-dev
+            - libpulse-dev
+            - libtheora-dev
+            - libvorbis-dev
+            - libxxf86vm-dev
+            - p7zip
+            - splint
+      script: script/travis-ci/linux-allegro5.sh
+
+    #~ - os: osx
+      #~ osx_image: xcode8
+      #~ install:
+        #~ - brew update
+        #~ - brew install
+            #~ allegro
+            #~ scons
+#~ #            p7zip freetype libogg physfs libpng flac ffmpeg
+      #~ script: script/travis-ci/osx.sh
 
 branches:
   only:

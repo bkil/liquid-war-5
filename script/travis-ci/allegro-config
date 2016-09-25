@@ -1,0 +1,16 @@
+#!/bin/sh
+
+# list taken from allegro4-to-5:SConstruct
+AL5="pkg-config allegro-5 allegro_primitives-5 allegro_image-5\
+ allegro_font-5 allegro_audio-5 allegro_acodec-5 allegro_color-5"
+
+case $1 in
+ --cflags)
+   echo "`$AL5 --cflags`" ;;
+
+ --libs)
+   echo "-lallegro4-to-5 -lm `$AL5 --libs`" ;;
+
+ --version)
+   echo "4.2.0" ;;
+esac
