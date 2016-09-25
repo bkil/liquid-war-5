@@ -59,8 +59,8 @@
 /* variables globales                                               */
 /*==================================================================*/
 
-extern int GFX_MODE_W[5];
-extern int GFX_MODE_H[5];
+extern int GFX_MODE_W[6];
+extern int GFX_MODE_H[6];
 
 /*==================================================================*/
 /* fonctions globales                                               */
@@ -68,5 +68,6 @@ extern int GFX_MODE_H[5];
 
 int need_to_change_mode (int res1, int res2, int flip);
 int set_resolution (int res, int flip, int fullscreen, int *flip_enabled);
+int get_max_resolution (void);
 
 #endif

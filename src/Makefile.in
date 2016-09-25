@@ -1,4 +1,5 @@
 
+WCFLAGS = @WCFLAGS@
 prefix =          @prefix@
 exec_prefix =     @exec_prefix@
 datarootdir =     @datarootdir@
@@ -245,7 +246,7 @@ CONFIG_OPTIONS = \
 	-DCONFIG_UNIX_SRV=\"$(GAMEDIR)/liquidwar-server\" \
 	-DCONFIG_UNIX_GEN=\"$(GAMEDIR)/liquidwar-mapgen\"
 
-CMD_CC = $(CC) $(CFLAGS) $(ALCFLAGS) -c $(DEBUG_FLAGS) -Wall -W $(HOST_CPU_CC) $(CONFIG_OPTIONS) $(DEBUG_OPTIONS) $(SPRINTF_OPTIONS) $(ASM_OPTIONS) $(GP2X_OPTIONS) -DUNIX -D_THREAD_SAFE
+CMD_CC = $(CC) $(CFLAGS) $(ALCFLAGS) -c $(DEBUG_FLAGS) $(WCFLAGS) $(HOST_CPU_CC) $(CONFIG_OPTIONS) $(DEBUG_OPTIONS) $(SPRINTF_OPTIONS) $(ASM_OPTIONS) $(GP2X_OPTIONS) -DUNIX -D_THREAD_SAFE
 CMD_AS = $(AS) $(ASFLAGS) --32
 
 all: $(EXE_FILES)
@@ -291,7 +292,7 @@ config: print_config print_cmd_cc print_cmd_as print_cmd_ld
 
 check:
 	@find . -name "*.[c|h]" -a ! -path "*32*" -exec indent {} \;
-	@find . -name "*.[c|h]" -a ! -path "*32*" -exec splint {} \;
+	@find . -name "*.[c|h]" -a ! -path "*32*" -exec splint +posixlib -I/usr/include/x86_64-linux-gnu {} \;
 
 print_config:
 	@echo "The configuration options to generate binaries are:"

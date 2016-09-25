@@ -69,22 +69,22 @@
 /*==================================================================*/
 
 #ifdef DOS
-int GFX_MODE_W[5] = { 320, 360, 640, 800, 1024 };
-int GFX_MODE_H[5] = { 240, 240, 480, 600, 768 };
+int GFX_MODE_W[6] = { 320, 360, 640, 800, 1024, 1024 };
+int GFX_MODE_H[6] = { 240, 240, 480, 600, 768, 768 };
 #endif
 
 #ifdef WIN32
-int GFX_MODE_W[5] = { 320, 512, 640, 800, 1024 };
-int GFX_MODE_H[5] = { 240, 384, 480, 600, 768 };
+int GFX_MODE_W[6] = { 320, 512, 640, 800, 1024, 1024 };
+int GFX_MODE_H[6] = { 240, 384, 480, 600, 768, 768 };
 #endif
 
 #ifdef UNIX
 #ifdef GP2X
-int GFX_MODE_W[5] = { 320, 320, 320, 320, 320 };
-int GFX_MODE_H[5] = { 240, 240, 240, 240, 240 };
+int GFX_MODE_W[6] = { 320, 320, 320, 320, 320, 320 };
+int GFX_MODE_H[6] = { 240, 240, 240, 240, 240, 240 };
 #else
-int GFX_MODE_W[5] = { 320, 512, 640, 800, 1024 };
-int GFX_MODE_H[5] = { 240, 384, 480, 600, 768 };
+int GFX_MODE_W[6] = { 320, 512, 640, 800, 1024, 1920 };
+int GFX_MODE_H[6] = { 240, 384, 480, 600, 768, 1080 };
 #endif
 #endif
 
@@ -93,11 +93,13 @@ static int GFX_MODE_TYPE_FULLSCREEN[] = { GFX_MODEX,
   GFX_MODEX,
   GFX_VESA2L,
   GFX_VESA2L,
+  GFX_VESA2L,
   GFX_VESA2L
 };
 
 static int GFX_MODE_TYPE_WINDOWED[] = { GFX_MODEX,
   GFX_MODEX,
+  GFX_VESA2L,
   GFX_VESA2L,
   GFX_VESA2L,
   GFX_VESA2L
@@ -109,10 +111,12 @@ static int GFX_MODE_TYPE_FULLSCREEN[] = { GFX_DIRECTX,
   GFX_DIRECTX,
   GFX_DIRECTX,
   GFX_DIRECTX,
+  GFX_DIRECTX,
   GFX_DIRECTX
 };
 
 static int GFX_MODE_TYPE_WINDOWED[] = { GFX_DIRECTX_WIN,
+  GFX_DIRECTX_WIN,
   GFX_DIRECTX_WIN,
   GFX_DIRECTX_WIN,
   GFX_DIRECTX_WIN,
@@ -126,10 +130,12 @@ static int GFX_MODE_TYPE_FULLSCREEN[] = { GFX_GP2X,
   GFX_GP2X,
   GFX_GP2X,
   GFX_GP2X,
+  GFX_GP2X,
   GFX_GP2X
 };
 
 static int GFX_MODE_TYPE_WINDOWED[] = { GFX_GP2X,
+  GFX_GP2X,
   GFX_GP2X,
   GFX_GP2X,
   GFX_GP2X,
@@ -140,10 +146,12 @@ static int GFX_MODE_TYPE_FULLSCREEN[] = { GFX_AUTODETECT_FULLSCREEN,
   GFX_AUTODETECT_FULLSCREEN,
   GFX_AUTODETECT_FULLSCREEN,
   GFX_AUTODETECT_FULLSCREEN,
+  GFX_AUTODETECT_FULLSCREEN,
   GFX_AUTODETECT_FULLSCREEN
 };
 
 static int GFX_MODE_TYPE_WINDOWED[] = { GFX_AUTODETECT_WINDOWED,
+  GFX_AUTODETECT_WINDOWED,
   GFX_AUTODETECT_WINDOWED,
   GFX_AUTODETECT_WINDOWED,
   GFX_AUTODETECT_WINDOWED,
@@ -280,4 +288,10 @@ set_resolution (int res, int flip, int fullscreen, int *flip_enabled)
     }
 
   return (ret);
+}
+
+int
+get_max_resolution (void)
+{
+  return sizeof (GFX_MODE_W) / sizeof (GFX_MODE_W[0]) - 1;
 }

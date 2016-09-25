@@ -228,7 +228,7 @@ graphic_options (void)
       d[11].dp = d[12].dp = d[13].dp = d[14].dp = d[15].dp = d[16].dp =
 	d[17].dp = NULL;
       d[12].d1 = 18;
-      d[13].d1 = d[14].d1 = 4;
+      d[13].d1 = d[14].d1 = get_max_resolution ();
       d[15].d1 = 8;
       d[16].d1 = 8;
       d[15].dp3 = &CONFIG_VIEWPORT_SIZE;
