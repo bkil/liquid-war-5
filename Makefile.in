@@ -109,9 +109,9 @@ install_nolink: install_bin install_data install_custom_map install_custom_textu
 install_bin: src/liquidwar src/liquidwar-server src/liquidwar-mapgen
 	@echo "Installing liquidwar binaries in $(GAMEDIR)."
 	@install -d $(DESTDIR)$(GAMEDIR)
-	@install -c -s src/liquidwar $(DESTDIR)$(GAMEDIR)
-	@install -c -s src/liquidwar-server $(DESTDIR)$(GAMEDIR)
-	@install -c -s src/liquidwar-mapgen $(DESTDIR)$(GAMEDIR)
+	@install -c src/liquidwar $(DESTDIR)$(GAMEDIR)
+	@install -c src/liquidwar-server $(DESTDIR)$(GAMEDIR)
+	@install -c src/liquidwar-mapgen $(DESTDIR)$(GAMEDIR)
 
 install_link:
 	@echo "Installing link in $(BINDIR)."
