@@ -1,7 +1,7 @@
-<?
+<?php
 /*****************************************************************************/
 /* Meta-server which registers game servers                                  */
-/* Copyright (C) 2002-2013 Christian Mauduit                                 */
+/* Copyright (C) 2002-2016 Christian Mauduit                                 */
 /*                                                                           */
 /* This program is free software; you can redistribute it and/or modify      */
 /* it under the terms of the GNU General Public License as published by      */
@@ -21,30 +21,63 @@
 /* Contact author : ufoot@ufoot.org                                          */
 /*****************************************************************************/
 
-// system page called by servers to register themselves
-
-require 'db.php3';
-require 'html.php3';
-require 'metaserver.php3';
-
-header("Content-Type: text/plain");
-
-$result=metaserver_register($protocol,
-			    $game,
-			    $version,
-			    $port,
-			    $busy_players,
-			    $max_players,
-			    $password,
-			    $comment);
-
-if ($result) 
+//----------------------------------------------------------------------
+// Transforms text to HTML code, to avoid buggy and/or malicious HTML 
+//----------------------------------------------------------------------
+function html_format($text)
 {
-  echo "OK\n";
+    $html=htmlentities($text);
+
+    /*
+     * Now if the HTML string is empty, we replace it by &nbsp; which
+     * avoids weird behaviors with cell borders in HTML tables.
+     */
+    if ($html=="") {
+        $html="&nbsp;";
+    }
+
+    return $html;
 }
-else
+
+//----------------------------------------------------------------------
+// Transforms a number of second into a readable uptime
+//----------------------------------------------------------------------
+function html_uptime($timestamp)
 {
-  echo "error\n";
+    $seconds=$timestamp%60;
+    $minutes=floor($timestamp/60)%60;
+    $hours=floor($timestamp/3600)%24;
+    $days=floor($timestamp/(3600*24));
+
+    if ($days>0) {
+        if ($days>1) {
+            $uptime=$days." days";
+        }
+        else{
+            $uptime="1 day";
+        }
+    }
+    else if ($hours>0) {
+        $uptime=$hours." h";
+    }
+    else if ($minutes>0) {
+        $uptime=$minutes." min";
+    }
+    else {
+        $uptime=$seconds." sec";
+    }
+
+    return $uptime;
+}
+
+//----------------------------------------------------------------------
+// Transforms a UNIX timestamp into a readable date
+//----------------------------------------------------------------------
+function html_date($timestamp)
+{
+    $date=date("Y-m-d H:i:s",$timestamp);
+
+    return $date;
 }
 
 ?>

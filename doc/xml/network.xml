@@ -88,7 +88,7 @@ Register on "www.ufoot.org/metaserver/" (y/n)?
       <text>
 	Now if we answer "y", then the server will automatically contact
 	the "meta-server" and it will be listed on
-	"http://www.ufoot.org/liquidwar/v5/metaserver.php3"
+	"http://www.ufoot.org/liquidwar/v5/metaserver.php"
       </text>
       <text>
 	This can be convenient for people who want to find other gamers to
@@ -213,6 +213,37 @@ Use "-private" to get rid of this question.
 	CTRL-C.
       </text>
     </part>
+    <part title="Using Docker">
+      <text>
+	Docker (see "http://docs.docker.com/" for details) is a convenient
+	way to launch a server without re-inventing (rather, re-compiling)
+	the wheel.
+      </text>
+      <text>
+	You might want to run the server this way if, for instance, you
+	need to have it run on a remote box where you do not wish to install
+	a complex Liquid War stack, Allegro and the rest.
+      </text>
+      <text>
+	Please visit "https://hub.docker.com/r/ufoot/liquidwar-server/" for a list
+	of available images, once it's installed, running the server
+	should amount to something like:
+      </text>
+      <code>
+docker pull ufoot/liquidwar-server
+docker run -i -p 8035:8035 ufoot/liquidwar-server
+      </code>
+      <text>
+	Additionnally, images are provided to run the metaserver, which
+	is responsible for registering and listing all running games.
+	While there's no real reason to run your own since one should permanently
+	be available on ufoot.org, it's quite straightforward to run your own:
+      </text>
+      <code>
+docker pull ufoot/liquidwar-metaserver
+docker run -i -p 8053:8053 ufoot/liquidwar-metaserver
+      </code>
+    </part>
   </chap>
 
   <chap title="Using the meta-server">
@@ -232,7 +263,7 @@ Use "-private" to get rid of this question.
 	source package of Liquid War, so you might run such a server
 	yourself if you want to. However, by default, servers will
 	register themselves on my web site, and will be listed on
-	"http://www.ufoot.org/liquidwar/v5/metaserver.php3"
+	"http://www.ufoot.org/liquidwar/v5/metaserver.php"
       </text>
     </part>
     <part title="How to register a server">
@@ -283,7 +314,7 @@ Register on "www.ufoot.org/metaserver/" (y/n)?
       </text>
       <text>
 	Note that you can also get the list of available servers
-	from "http://www.ufoot.org/liquidwar/v5/metaserver.php3"
+	from "http://www.ufoot.org/liquidwar/v5/metaserver.php"
 	There you'll also find a little chat-box which will allow
 	you to send exchange messages with other players.
       </text>

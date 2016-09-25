@@ -22,7 +22,7 @@
 
 /*****************************************************************************/
 /* Liquid War is a multiplayer wargame                                       */
-/* Copyright (C) 1998-2013 Christian Mauduit                                 */
+/* Copyright (C) 1998-2016 Christian Mauduit                                 */
 /*                                                                           */
 /* This program is free software; you can redistribute it and/or modify      */
 /* it under the terms of the GNU General Public License as published by      */
@@ -57,7 +57,7 @@
 #define LW_SERVER_DEFAULT_ADDRESS     "127.0.0.1"
 #define LW_SERVER_DEFAULT_PORT        8035
 #define LW_SERVER_DEFAULT_LAG         6
-#define LW_SERVER_DEFAULT_METASERVER  "www.ufoot.org/metaserver/"
+#define LW_SERVER_DEFAULT_METASERVER  "www.ufoot.org:8053/"
 
 #define LW_SERVER_METASERVER_PROTOCOL "1.0"
 

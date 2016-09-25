@@ -22,7 +22,7 @@
 
 /*****************************************************************************/
 /* Liquid War is a multiplayer wargame                                       */
-/* Copyright (C) 1998-2013 Christian Mauduit                                 */
+/* Copyright (C) 1998-2016 Christian Mauduit                                 */
 /*                                                                           */
 /* This program is free software; you can redistribute it and/or modify      */
 /* it under the terms of the GNU General Public License as published by      */
@@ -197,8 +197,9 @@ distribute_teams (LW_SRVCONT * cont)
 	  if (cont->chan[i].team[j].active)
 	    {
 	      find_chan_and_team_by_server_id (cont,
-					       cont->chan[i].team[j].
-					       server_id, &i_orig, &j_orig);
+					       cont->chan[i].
+					       team[j].server_id, &i_orig,
+					       &j_orig);
 	      if (i_orig >= 0 && j_orig >= 0)
 		{
 		  /*

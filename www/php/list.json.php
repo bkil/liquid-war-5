@@ -1,7 +1,7 @@
-<?
+<?php
 /*****************************************************************************/
 /* Meta-server which registers game servers                                  */
-/* Copyright (C) 2002-2013 Christian Mauduit                                 */
+/* Copyright (C) 2002-2016 Christian Mauduit                                 */
 /*                                                                           */
 /* This program is free software; you can redistribute it and/or modify      */
 /* it under the terms of the GNU General Public License as published by      */
@@ -21,23 +21,48 @@
 /* Contact author : ufoot@ufoot.org                                          */
 /*****************************************************************************/
 
-// system page called to remove old servers from the database
+// Returns the list of available games
 
-require 'db.php3';
-require 'html.php3';
-require 'metaserver.php3';
+require 'db.php';
+require 'html.php';
+require 'metaserver.php';
 
-header("Content-Type: text/plain");
+header("Content-Type: application/json");
 
-$result=metaserver_cleanup();
+$result=metaserver_list($_GET["protocol"],
+$_GET["game"],
+$_GET["version"]);
 
-if ($result) 
-{
-  echo "OK\n";
+echo "\"servers\":[\n";
+if ($result) {
+    for ($i=0;$result[$i];++$i) {
+        echo "    {";
+        echo "\"address\":";
+        echo json_encode($result[$i]["address"],METASERVER_SIZE_ADDRESS).",";
+        echo "\"port\":";
+        echo $result[$i]["port"].",";
+        echo "\"game\":";
+        echo json_encode($result[$i]["game"],METASERVER_SIZE_GAME).",";
+        echo "\"version\":";
+        echo json_encode($result[$i]["version"],METASERVER_SIZE_VERSION).",";
+        echo "\"uptime\":";
+        echo $result[$i]["uptime"].",";
+        echo "\"busy_players\":";
+        echo $result[$i]["busy_players"].",";
+        echo "\"max_players\":";
+        echo $result[$i]["max_players"].",";
+        echo "\"password\":";
+        echo $result[$i]["password"].",";
+        echo "\"comment\":";
+        echo json_encode($result[$i]["comment"],METASERVER_SIZE_COMMENT);
+        if ($i<count($result)-1) {
+            echo "},\n";
+        } else {
+            echo "}\n";
+        }
+    }
 }
-else
-{
-  echo "error\n";
-}
+
+echo "]\n";
 
 ?>

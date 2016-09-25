@@ -22,7 +22,7 @@
 
 /*****************************************************************************/
 /* Liquid War is a multiplayer wargame                                       */
-/* Copyright (C) 1998-2013 Christian Mauduit                                 */
+/* Copyright (C) 1998-2016 Christian Mauduit                                 */
 /*                                                                           */
 /* This program is free software; you can redistribute it and/or modify      */
 /* it under the terms of the GNU General Public License as published by      */
@@ -476,8 +476,7 @@ connect_on_server_keepalive (void *arg)
 		    {
 		      if (!lw_protocol_ask_teamstartinfo (&data->sock, i,
 							  &
-							  (data->
-							   team_start_info
+							  (data->team_start_info
 							   [i])))
 			{
 			  result = 0;

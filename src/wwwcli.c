@@ -22,7 +22,7 @@
 
 /*****************************************************************************/
 /* Liquid War is a multiplayer wargame                                       */
-/* Copyright (C) 1998-2013 Christian Mauduit                                 */
+/* Copyright (C) 1998-2016 Christian Mauduit                                 */
 /*                                                                           */
 /* This program is free software; you can redistribute it and/or modify      */
 /* it under the terms of the GNU General Public License as published by      */
@@ -71,7 +71,7 @@
 #define LW_WWWCLI_HTTP_CONTENT_SIZE 100000
 #define LW_WWWCLI_HTTP_URL_SIZE (URL_SIZE + 200)
 
-#define LW_WWWCLI_URL_LIST "list.php3"
+#define LW_WWWCLI_URL_LIST "list.txt.php"
 #define LW_WWWCLI_TEMP_BUFFER_SIZE 100
 
 /*
